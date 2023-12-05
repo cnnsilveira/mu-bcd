@@ -50,3 +50,6 @@
 !/wp-content/themes/
 !/wp-content/plugins/
 !/wp-content/mu-plugins/
+
+# Local development.
+local-xdebuginfo.php
