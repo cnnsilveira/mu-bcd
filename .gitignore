@@ -51,5 +51,10 @@
 !/wp-content/plugins/
 !/wp-content/mu-plugins/
 
+# Ignore Node JS.
+**/node_modules/
+**/package-lock.json
+**/build/
+
 # Local development.
 local-xdebuginfo.php
