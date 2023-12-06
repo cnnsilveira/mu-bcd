@@ -72,3 +72,21 @@ function bcd__enqueues() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'wp_print_styles', 'print_emoji_styles' );
 }
+
+function bcd__invalid_page_redirect() {
+	$url_parts   = explode( '/', $_SERVER['REQUEST_URI'] );
+	$valid_slugs = array(
+		'imoveis',
+		'meu-perfil',
+		'usuarios',
+		'definicoes',
+	);
+
+	if ( 4 <= count( $url_parts ) && ! in_array( $url_parts[2], $valid_slugs ) ) {
+		wp_safe_redirect( home_url( '/dashboard/' ) );
+	}
+}
+
+function bcd__page_url( string $page ) {
+	return home_url( 'index' === $page ? '/dashboard/' : '/dashboard/' . $page );
+}

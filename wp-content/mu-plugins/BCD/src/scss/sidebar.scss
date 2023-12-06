@@ -59,21 +59,21 @@
 			border-radius: 50%;
 		}
 
+		&:hover {
+			.bcd__sidebar--tip {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+
 		&.active i,
 		&:not(.active):hover i {
 			background: #5182ff;
 			color: #fff;
 		}
 
-		&.back-to-site {
+		&:last-child {
 			margin-top: auto;
-		}
-
-		&:hover {
-			.bcd__sidebar--tip {
-				opacity: 1;
-				visibility: visible;
-			}
 		}
 	}
 

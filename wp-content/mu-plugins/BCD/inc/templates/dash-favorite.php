@@ -1,6 +1,6 @@
 <?php
 /**
- * This file generates the markup for the users management page.
+ * This file generates the markup for the favorite properties page.
  *
  * @package BCD
  */
@@ -9,7 +9,7 @@
 bcd__require_functions();
 
 // Creates the main structure and opens the content tag.
-bcd__open( 'Usuários' );
+bcd__open( 'Favoritos' );
 
 /**
  * Add content here.
