@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/13ca972e4c.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<title>Document</title>
+	<style>
+		::-webkit-scrollbar {
+			width: 15px;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #16233e99;
+			border-radius: 10px;
+			transition: all 200ms;
+		}
+		::-webkit-scrollbar-thumb:hover {
+			background: #16233ebb;
+		}
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			font-family: inherit;
+		}
+		body {
+			font-family: 'Manrope', sans-serif;
+			display: flex;
+			width: 100%;
+			height: 100%;
+			min-height: 100dvh;
+			background: #eeeff1;
+			color: #fff;
+			overflow: hidden;
+			font-size: 16px;
+		}
+		h1 {
+			font-size: 2.5rem;
+			font-weight: 600;
+		}
+		li {
+			list-style: none;
+		}
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+		/**/
+	</style>
+</head>
+<body>
+
+	<header class="bcd__header">
+		<div class="bcd__header--right">
+			<div class="bcd__header--user">
+				<span>John Doe</span>
+				<i class="fa-solid fa-circle-user"></i>
+				<nav class="bcd__header--user-actions">
+					<ul>
+						<li><a href="#">Meu perfil</a></li>
+						<li><a href="#">Log out</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div><!-- .bcd__header--right -->
+		<style>
+			.bcd__header {
+				width: calc(100dvw - 70px);
+				height: 70px;
+				position: fixed;
+				top: 0;
+				right: 0;
+				background: #1e1e1e;
+				padding: 0 30px;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				box-shadow: 0 0 5px #00000088;
+				border-bottom-right-radius: 20px;
+			}
+			.bcd__header--user {
+				display: flex;
+				gap: 8px;
+				align-items: center;
+				padding: 15px 15px;
+				border-radius: 20px 20px 0 0;
+				transition: all .2s;
+				cursor: default;
+				position: relative;
+			}
+			.bcd__header--user-actions {
+				position: absolute;
+				bottom: -77px;
+				left: 0;
+				background: #5182ff;
+				width: 100%;
+				white-space: nowrap;
+				padding: 5px 15px 15px;
+				border-radius: 0 0 20px 20px;
+				visibility: hidden;
+				opacity: 0;
+				transition: all .2s;
+			}
+			.bcd__header--user-actions ul {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+			}
+			.bcd__header--user:hover {
+				background: #5182ff;
+				color: #ffffff;
+			}
+			.bcd__header--user:hover .bcd__header--user-actions {
+				visibility: visible;
+				opacity: 1;
+	
+			}
+			.bcd__header--user i {
+				font-size: 24px;
+			}
+			/**/
+		</style>
+	</header><!-- .bcd__header -->
+
+
+
+
+
+
+
+	<main class="bcd__content">
+		<section class="bcd__content--title">
+			<div class="left">
+				<h1>Imóveis</h1>
+			</div>
+			<div class="right">
+				<button class="bcd__content--add-new">Novo imóvel</button>
+			</div>
+		</section>
+		<section class="bcd__content--wrap">
+			<article class="bcd__content--block small">
+				<form class="bcd__content--search-form" method="get">
+					<input type="text" name="keyword" placeholder="Busque pelo nome ou código do imóvel">
+					<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+				</form>
+			</article>
+			<article class="bcd__content--block medium">
+
+			</article>
+			<style>
+				.bcd__content--search-form {
+					display: flex;
+					width: 100%;
+					background: none;
+					border: 1px solid #e0e0e0;
+					border-radius: 20px;
+					overflow: hidden;
+				}
+				.bcd__content--search-form input[type="text"],
+				.bcd__content--search-form button[type="submit"] {
+					background: none;
+					border: none;
+					outline: none;
+				}
+				.bcd__content--search-form input[type="text"] {
+					padding: 8px 0 8px 12px;
+					width: 100%;
+				}
+				.bcd__content--search-form button[type="submit"] {
+					height: 34px;
+					width: 40px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background: #1e1e1e;
+					color: #fff;
+					cursor: pointer;
+				}
+				/**/
+			</style>
+
+			<article class="bcd__content--block table-block">
+				<div class="bcd__content--props-table">
+					<table class="bcd__props_table">
+						<thead>
+							<tr>
+								<th>Imóvel</th>
+								<th>Tipo</th>
+								<th>Valor</th>
+								<th>Situação</th>
+								<th>Destaque</th>
+								<th>Status</th>
+								<th class="bcd__props_table--actions"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="content-row" data-bcd__prop_id="1">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Apartamento em Itajuba</strong>
+										<br>
+										<span>Ref.: 329839</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Apartamento</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 350.000,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>À venda</span>
+								</td>
+								<td class="bcd__props_table--item featured true">
+									<i class="fa-solid fa-circle-check"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag publish">
+										Publicado
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="1">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="content-row" data-bcd__prop_id="3">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Casa no centro</strong>
+										<br>
+										<span>Ref.: 219302</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Casa</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 550.000,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>À venda</span>
+								</td>
+								<td class="bcd__props_table--item featured false">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag pending">
+										Pendente
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="3">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="content-row" data-bcd__prop_id="4">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Residencial Piracanjuba</strong>
+										<br>
+										<span>Ref.: 102398</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Empreendimento</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 600.000,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>À venda</span>
+								</td>
+								<td class="bcd__props_table--item featured false">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag expired">
+										Expirado
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="4">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="content-row" data-bcd__prop_id="5">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Quitinete mobiliada</strong>
+										<br>
+										<span>Ref.: 120389</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Quitinete</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 850,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>Aluguel</span>
+								</td>
+								<td class="bcd__props_table--item featured true">
+									<i class="fa-solid fa-circle-check"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag publish">
+										Publicado
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="5">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="content-row" data-bcd__prop_id="6">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Casa (faltando informações)</strong>
+										<br>
+										<span>Ref.: 583943</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Casa</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 450.000,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>À venda</span>
+								</td>
+								<td class="bcd__props_table--item featured false">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag draft">
+										Rascunho
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="6">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="content-row" data-bcd__prop_id="7">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Loft na Barra Sul</strong>
+										<br>
+										<span>Ref.: --</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Loft</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 350.000,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>À venda</span>
+								</td>
+								<td class="bcd__props_table--item featured false">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag disapproved">
+										Reprovado
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="7">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="content-row" data-bcd__prop_id="8">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Apartamento mobiliado em Canto Grande</strong>
+										<br>
+										<span>Ref.: 209389</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Apartamento</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 2.500,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>Aluguel</span>
+								</td>
+								<td class="bcd__props_table--item featured false">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag sold">
+										Locado
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="8">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="content-row" data-bcd__prop_id="9">
+								<td class="bcd__props_table--item name">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADFCAMAAACsN9QzAAAAMFBMVEXQ0NDw8PDX19fU1NTn5+fl5eXt7e3q6urY2Nju7u7Ozs7e3t7g4ODy8vLi4uLb29uNTQONAAAFDElEQVR4nO2d6YKqMAyFpaxeRN//ba+MIordkqbQmJyfQ1vznbZhaWFOJ9Gqjw7gYCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bCm/bKXw12a4jeN4M4xNxIc+XJqummad++uNMKRdheT/V7d3+OqpuwXNQBvXXkLyj131qalqaQPbSSj+up2qL00dxzSAirmx4N8N6A11dPmF4b9a8WcD+I0ARMSjnX5Wy84AeMCmc3T/LHbnQTi/LffxzYHgeM3ZjX83YMwRZEaB+S+e7p9T4L8cUeYTmL/38lcTswkADbf247ObAFD+IcR/zRJmNkH5xxB/wysBQPn96Y9fAlR+mKSP/2D+a3+bX/r577R98LPlZ/YMAMzvuvl/quM1/OH8g7/7LzmCzCgwv/XZ39r9zC7/Eff/N08GYNf9mOdfVzd+w637Uc8/7Y9/59HPLPmfcPy1/RnA1LF7+odd/7CNgOnMcQkMN2HvJ4GtAyxXP/Drv0P/AV91zK57F+ET9q3pz3/L33f4nt15b1HS/ofb5dq21+vIceI/xe6ETSzlly3lly3lly3lly3lly3lly3lly3lly3lL1H7PU4skr/d72WSAvnnFeZpr5305fE/Ftj3MqA8/uf+gqnZ5deK439tr5h2yQGl8bdvq2p7GFAW/+fC8h7bKYri3+4t2iEJFsX/ta0gfw4oid+ysyy7AeXwWzeVZM8BxfC79hVmzgGl8Nt7P/8IKIXfiZ85BxTC3zrpZ2U0oAh+9+DPPgVK4Pdvqc5rQAn8gd5/GJDptwvgD/b+nwGZcsDh/HUTQZ9vChzNH0p9uQ04mD8eP5MBB/MD8PMkwWP5o1LfmwH0SfBIfsjgX0YAdby07ZkroD04fgYDSJszPSC+2BNfXgMoW5vfC4qPD9H7GQwgbKx+fBgpLj7M4H+K1AC6tpbvQkV1UAI+7Qgga8q8XoqLiC8Fn9YAqpZMD4kvCZ/UAKKG6g6ycJOIT2kATTv15ptw3vjSBj+xASTNmK8XYj3xUeDTGUDRiukB8dHgkxlA0IgN3x0fET6VAeltbOf+S7b4qHqfzIDkJtyfw7R8DpUSn8aA1Ba+U58nPlp8EgMSG7DPfUd81PgUBqTVd3wJwhEfOT6BAUnVnanPFh9971MYkFLb+yXgbXx58JMNSKjsn/uv+B5ngVz4qQbg68bhL/EFEsVhBqCrhuf+e3zZej/VAGxNU8UTTX3G3v/7AbwByIqxg38n4Q3A1fNd9R0itAGoaoX1/iysAZha9bmw3p+FNABRKeay5wDhDIDXGUqb+4tQBoCrFDj3F2H+/wq0Rh34/u2hQowAYIUiU98q+AiAlR/KTH2rwCMAVLzY1LcKagCkdKEnvk8BpwBkv0rZc38RzID4spA7vkMFMiC6aPGpbxXEgNiSjPBBBkQWZJH6VsUbEFeOzdxfFG1AVDFWg/+h2M8xx/AzxI8eARGFWOLHGhAuY3hc9nwryoBgEXapb1VMDgjxDyXf74cUYUCAnzV+zBTwH2ea+lYFDfAeNkeHn66QAb6jA9fM/65ADvDwM5/7i/wGuPl/BD8wBZyH/P/nmJV8BriO/EDqW+WZAg7+nxn8D7kNsPOzP+9v5TTAyv9z+O4cYPsr41setxwGWPkH84MaovklSfllS/llS/llS/llS/llS/llS/llS/llq/4Pyu5AznGi3bUAAAAASUVORK5CYII=" height="50" width="50">
+									<div class="item-name">
+										<strong>Apartamento em Itajuba</strong>
+										<br>
+										<span>Ref.: 329839</span>
+									</div>
+								</td>
+								<td class="bcd__props_table--item type">
+									<span>Apartamento</span>
+								</td>
+								<td class="bcd__props_table--item price">
+									<span>R$ 350.000,00</span>
+								</td>
+								<td class="bcd__props_table--item situation">
+									<span>À venda</span>
+								</td>
+								<td class="bcd__props_table--item featured false">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</td>
+								<td class="bcd__props_table--item status">
+									<span class="bcd__props_table--status-tag private">
+										Privado
+									</span>
+								</td>
+								<td class="bcd__props_table--item actions">
+									<button class="menu" onclick="this.classList.toggle('opened')" aria-label="Main Menu">
+										<svg width="35" height="35" viewBox="0 0 100 100">
+											<path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+											<path class="line line2" d="M 20,50 H 80" />
+											<path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr class="action-row" data-bcd__prop_id="9">
+								<td>
+									<div>
+										<div class="actions-wrap">
+											<a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-pen-to-square"></i><span>Editar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-copy"></i><span>Duplicar imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-chart-simple"></i><span>Estatísticas do imóvel</span></a>
+											<a href="#"><i class="fa-solid fa-trash"></i><span>Deletar imóvel</span></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<script>
+					jQuery(function ($) {
+						$('.bcd__props_table--item.actions button').click((e) => {
+							$('.action-row[data-bcd__prop_id="'+$(e.target).closest('.content-row').data('bcd__prop_id')+'"]').toggleClass('visible');
+						})();
+					});
+				</script>
+				<style>
+					.bcd__content--block.table-block {
+						padding: 0;
+					}
+					.bcd__props_table {
+						width: 100%;
+					}
+					.bcd__props_table td {
+						padding: 10px;
+						border-top: 1px solid #e0e0e0;
+					}
+					.bcd__props_table th {
+						text-align: start;
+						padding: 20px 10px;
+					}
+					.bcd__props_table tr {
+						position: relative;
+					}
+					.bcd__props_table th:first-child {
+						width: 50%;
+					}
+					.bcd__props_table th:not(:first-child):not(.bcd__props_table--actions) {
+						width: 10%;
+					}
+					.bcd__props_table--actions {
+						width: 0;
+					}
+					.bcd__props_table th:first-child,
+					.bcd__props_table th:last-child,
+					.bcd__props_table td:first-child,
+					.bcd__props_table td:last-child {
+						padding-left: 20px;
+						padding-right: 20px;
+					}
+					.bcd__props_table--item.name {
+						display: flex;
+						gap: 10px;
+					}
+					.bcd__props_table--item.name img {
+						border-radius: 10px;
+					}
+
+					.bcd__props_table--item.featured {
+						font-size: 20px;
+					}
+					.bcd__props_table--item.featured.true {
+						color: #009966;
+					}
+
+					.bcd__props_table--item.featured.false {
+						color: #36454f;
+					}
+
+					
+
+					.bcd__props_table--status-tag {
+						padding: 6px 10px;
+						border-radius: 20px;
+						font-size: 14px;
+						color: #fff;
+						cursor: default;
+					}
+
+					.bcd__props_table--status-tag.publish {
+						background: #009966;
+					}
+					.bcd__props_table--status-tag.pending {
+						background: #ed9121;
+					}
+					.bcd__props_table--status-tag.expired {
+						background: #dc143c;
+					}
+					.bcd__props_table--status-tag.draft {
+						background: #6699cc;
+					}
+					.bcd__props_table--status-tag.disapproved {
+						background: #330066;
+					}
+					.bcd__props_table--status-tag.private {
+						background: #36454f;
+					}
+					.bcd__props_table--status-tag.sold {
+						background: #2663a1;
+					}
+
+					
+
+					.bcd__props_table--item.actions {
+						font-size: 1.2rem;
+					}
+					.bcd__props_table--item.actions .menu {
+						background-color: transparent;
+						border: none;
+						cursor: pointer;
+						display: flex;
+						padding: 0;
+						outline: none;
+					}
+					.bcd__props_table--item.actions .line {
+						fill: none;
+						stroke: black;
+						stroke-width: 6;
+						transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+						stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+					}
+					.bcd__props_table--item.actions .line1 {
+						stroke-dasharray: 60 207;
+						stroke-width: 6;
+					}
+					.bcd__props_table--item.actions .line2 {
+						stroke-dasharray: 60 60;
+						stroke-width: 6;
+					}
+					.bcd__props_table--item.actions .line3 {
+						stroke-dasharray: 60 207;
+						stroke-width: 6;
+					}
+					.bcd__props_table--item.actions .opened .line1 {
+						stroke-dasharray: 90 207;
+						stroke-dashoffset: -134;
+						stroke-width: 6;
+					}
+					.bcd__props_table--item.actions .opened .line2 {
+						stroke-dasharray: 1 60;
+						stroke-dashoffset: -30;
+						stroke-width: 6;
+					}
+					.bcd__props_table--item.actions .opened .line3 {
+						stroke-dasharray: 90 207;
+						stroke-dashoffset: -134;
+						stroke-width: 6;
+					}
+
+					tr.action-row {
+						position: absolute;
+						opacity: 0;
+						visibility: hidden;
+					}
+
+					tr.action-row.visible {
+						position: relative;
+						opacity: 1;
+						visibility: visible;
+					}
+
+					tr.action-row td {
+						height: 42px;
+					}
+
+					tr.action-row .actions-wrap {
+						position: absolute;
+						z-index: 0;
+						bottom: 20px;
+						left: 0;
+						width: 100%;
+						background: #1e1e1e;
+						color: #fff;
+						padding: 10px 20px;
+						visibility: hidden;
+						opacity: 0;
+						display: flex;
+						justify-content: start;
+						gap: 20px;
+					}
+
+					tr.action-row:last-child .actions-wrap {
+						border-radius: 0 0 15px 15px;
+					}
+
+					tr.action-row.visible .actions-wrap {
+						bottom: 0;
+						visibility: visible;
+						opacity: 1;
+					}
+
+					.actions-wrap span {
+						display: none;
+					}
+
+					.actions-wrap a:last-child {
+						margin-left: auto;
+					}
+
+					@media screen and (max-width: 1440px) {
+						.bcd__props_table th:first-child {
+							width: 35%;
+						}
+						.bcd__props_table th:not(:first-child):not(.bcd__props_table--actions) {
+							width: 13%;
+						}
+					}
+
+					@media screen and (max-width: 992px) {
+						.bcd__props_table th:not(:first-child):not(.bcd__props_table--actions),
+						.bcd__props_table td:not(:first-child):not(.actions) {
+							display: none;
+						}
+						.bcd__props_table th:first-child {
+							width: 100%;
+						}
+					}
+
+					/**/
+				</style>
+			</article>
+
+		</section>
+
+		<style>
+			.bcd__content {
+				margin: 80px 10px 10px 70px;
+				padding: 10px 20px;
+				width: 100%;
+				height: calc(100dvh - 90px);
+				color: #000000;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				overflow-x: auto;
+			}
+			.bcd__content--title {
+				display: flex;
+				width: 100%;
+				justify-content: space-between;
+				align-items: center;
+				gap: 20px;
+			}
+			.bcd__content--title .left {
+				color: #1e1e1e;
+			}
+			.bcd__content--title .right {
+				border-radius: 15px;
+				height: fit-content;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.bcd__content--search-prop {
+				border: 1px solid #5182ff;
+				width: fit-content;
+				border-radius: 15px;
+				overflow: hidden;
+				display: flex;
+				box-shadow: 0 0 10px #00000020;
+			}
+
+			.bcd__content--search-prop input[type="text"] {
+				border: none;
+				outline: none;
+				font-size: 1rem;
+				padding: 10px;
+				background: #f6f8ff;
+			}
+
+			.bcd__content--search-prop button {
+				border: none;
+				background: #5182ff;
+				outline: none;
+				height: 100%;
+				width: 40px;
+				cursor: pointer;
+				color: #fff;
+			}
+			button.bcd__content--add-new {
+				padding: 10px;
+				border-radius: 10px;
+				background: #5182ff;
+				border: none;
+				color: #fff;
+				font-size: 16px;
+				font-weight: 500;
+				cursor: pointer;
+			}
+
+			.bcd__content--wrap {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 20px;
+			}
+			.bcd__content--block {
+				border-radius: 15px;
+				background: #f6f8ff;
+				padding: 20px;
+				width: 100%;
+				box-shadow: 0 0 10px #00000020;
+				flex-grow: 1;
+			}
+			.bcd__content--block.small {
+				width: calc(30% - 10px);
+				max-width: 400px;
+			}
+			.bcd__content--block.medium {
+				width: calc(70% - 10px);
+			}
+			/**/
+		</style>
+	</main>
+
+
+
+	<aside class="bcd__sidebar">
+		<small class="bcd__sidebar--logo">
+			<!-- Author: Julia Passos  -->
+			<!-- License: GPL-3.0 -->
+			<!-- Generator: Adobe Illustrator 27.7.0 . SVG Version: 6.00 Build 0)  -->
+			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1080" xml:space="preserve">
+
+				<path class="st1" d="M367.58,367.3c0,0-5.96-22.78-15.23-58.22c-68.67,84.2-137.35,168.4-206.02,252.6
+					c-6.57,41.5-13.14,83.01-19.71,124.51c32.67,22.8,65.81,46.98,99.26,72.62c12.54,9.61,24.87,19.23,36.99,28.84
+					c0.89-11.97,1.76-23.98,2.6-36.03c0.63-9.06,1.25-18.1,1.86-27.11c-27.98-18.46-55.97-36.92-83.95-55.38
+					c3.22-28.34,6.44-56.68,9.67-85.02C251.22,511.83,309.4,439.57,367.58,367.3z"/>
+				<path class="st1" d="M215.03,645.01c55.85-70.47,108.63-137.04,111.71-140.93c74.09-93.44,142.77-180.02,148.2-186.86
+					c15.15,12.05,30.3,24.1,45.45,36.16c-19.99,32.53-28.7,60.72-32.94,80.7c-7.76,36.57-8.8,84.41-8.81,84.41c0,0,0.01-0.11,0.01-0.2
+					c21.17-19.21,39.62-37.82,55.56-55.16c0,0,19.97-21.75,40.46-47.43c53.51-67.09,116.51-173.79,124.53-187.44
+					c1.6,1.36,3.2,2.71,4.81,4.07c12.45,15.8,24.91,31.59,37.36,47.39c-8.85,16.98-22.18,41.79-39.48,71.1
+					c-25.21,42.72-99.98,163.79-222.35,288.77c-39.73,40.57-90.86,87.93-122.86,117.6c-25.28,23.43-46.35,42.51-60.54,55.26
+					c1.81-32.27,3.61-64.54,5.42-96.81c13.77-8.37,33.16-22.34,50.87-44.37c19.78-24.59,28.24-47.66,40.87-83.52
+					c7.39-20.99,16.14-49.66,22.88-84.76c-32.4,31.82-65.55,66.38-98.92,103.83c-19.85,22.28-38.66,44.33-56.48,66.03
+					C245.52,663.59,230.27,654.3,215.03,645.01z"/>
+				<path class="st1" d="M838,169.99c14.67,12.23,29.34,24.45,44.01,36.68c-11.15,31.17-27.75,73.59-51.35,122.25
+					c-65.98,136.07-140.5,225.46-190.07,284.15c0,0-142.88,169.17-295.65,269.94c-0.9,0.59-42.33,27.91-42.33,27.91
+					c-5.79-17.72-11.57-35.44-17.36-53.16c55.72-41.21,127.05-98.79,203.49-174.61c47.95-47.56,121.05-120.77,197.32-231.32
+					C731.96,385.32,788.71,291.22,838,169.99z"/>
+				<path class="st1" d="M827.69,496.44c-31.19,16.63-62.38,33.27-93.57,49.9c0,0,29.94,18.09,29.94,18.09c0,0-50.52,61.13-50.53,61.13
+					c0.01-0.01,103.55-70.49,103.55-70.49c0,0-28.69-11.23-28.69-11.23C801.49,528.04,814.59,512.24,827.69,496.44z"/>
+				<path class="st1" d="M827.35,409.31c5.35-8.55,10.78-18.08,16.01-28.61c3.6-7.24,6.76-14.25,9.54-20.96
+					c14.04,32.5,28.15,64.98,42.32,97.43c14.49,33.19,29.04,66.35,43.66,99.49c-0.01,0.01-77.97,100.43-77.97,100.43
+					c0,0-280.7,79.22-280.7,79.22c0,0,56.2-58.8,56.2-58.8c63.95-17.81,127.91-35.62,191.86-53.43l0,0
+					c10.43-12.7,20.9-25.67,31.41-38.91c9.99-12.58,19.74-25.08,29.27-37.48c-6.97-15.14-13.92-30.4-20.85-45.78
+					C854.09,470.8,840.51,439.93,827.35,409.31z"/>
+			</svg>
+		</small><!-- .bcd__sidebar--logo -->
+		<nav class="bcd__sidebar--nav">
+			<ul class="bcd__sidebar--list">
+				<li class="bcd__sidebar--item"><div class="bcd__sidebar--tip">Meu perfil</div><a href="#"><i class="fa-solid fa-circle-user"></i></a></li>
+				<li class="bcd__sidebar--item active"><div class="bcd__sidebar--tip">Lista de imóveis</div><a href="#"><i class="fa-solid fa-building"></i></a></li>
+				<li class="bcd__sidebar--item"><div class="bcd__sidebar--tip">Novo imóvel</div><a href="#"><i class="fa-solid fa-file-circle-plus"></i></a></li>
+				<li class="bcd__sidebar--item"><div class="bcd__sidebar--tip">Favoritos</div><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+				<li class="bcd__sidebar--item"><div class="bcd__sidebar--tip">Buscas salvas</div><a href="#"><i class="fa-solid fa-magnifying-glass-location"></i></a></li>
+				<li class="bcd__sidebar--item"><div class="bcd__sidebar--tip">Usuários</div><a href="#"><i class="fa-solid fa-users"></i></a></li>
+				<li class="bcd__sidebar--item"><div class="bcd__sidebar--tip">Definições</div><a href="#"><i class="fa-solid fa-sliders"></i></a></li>
+				<li class="bcd__sidebar--item"><div class="bcd__sidebar--tip">Sair</div><a href="#"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+				<li class="bcd__sidebar--item back-to-site"><div class="bcd__sidebar--tip">Voltar para o site</div><a href="#"><i class="fa-solid fa-angles-left"></i></a></li>
+			</ul>
+		</nav><!-- .bcd__sidebar--nav -->
+		<style>
+			.bcd__sidebar {
+				background: #1e1e1e;
+				border-bottom-right-radius: 20px;
+				box-shadow: 0 0 5px #00000088;
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 100dvh;
+				width: 70px;
+				padding: 90px 0 20px;
+				font-size: 20px;
+			}
+			.bcd__sidebar--logo {
+				width: 70px;
+				height: 70px;
+				color: #fff;
+				fill: #fff;
+				stroke: #fff;
+				position: absolute;
+				top: 0px;
+			}
+			.bcd__sidebar--nav {
+				height: 100%;
+			}
+			.bcd__sidebar--list {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				gap: 20px;
+			}
+			.bcd__sidebar--item {
+				width: 100%;
+				height: 35px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+			.bcd__sidebar--item a {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.bcd__sidebar--item i {
+				width: 35px;
+				height: 35px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				transition: all .2s;
+				border-radius: 50%;
+			}
+			.bcd__sidebar--item.active i,
+			.bcd__sidebar--item:not(.active):hover i {
+				background: #5182ff;
+				color: #fff;
+			}
+			.bcd__sidebar--item.back-to-site {
+				margin-top: auto;
+			}
+			.bcd__sidebar--tip {
+				position: absolute;
+				background: #1e1e1e;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				left: 0;
+				margin-left: 85px;
+				width: fit-content;
+				height: fit-content;
+				white-space: nowrap;
+				font-size: 14px;
+				padding: 5px 8px;
+				border-radius: 10px;
+				visibility: hidden;
+				opacity: 0;
+				transition: all .2s;
+			}
+			.bcd__sidebar--item:hover > .bcd__sidebar--tip {
+				opacity: 1;
+				visibility: visible;
+			}
+			.bcd__sidebar--tip::before {
+				content: '';
+				width: 0; 
+				height: 0; 
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+				border-right: 10px solid #1e1e1e;
+				position: absolute;
+				left: -8px;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			/**/
+		</style>
+	</aside><!-- .bcd__sidebar -->
+
+</body>
+</html>
+
+
+
+			<!-- <article class="bcd__content--block small">
+				<div class="bcd__content--props-search">
+					<form class="bcd__content--search-prop keyword" method="get">
+						<input type="text" name="keyword" placeholder="Palavra-chave">
+						<div class="submit">
+							<button role="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</div>
+					</form>
+					<form class="bcd__content--search-prop prop-id" method="get">
+						<input type="text" name="prop_id" placeholder="Cód. do imóvel">
+						<div class="submit">
+							<button role="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</div>
+					</form>
+				</div>
+				<div class="bcd__content--props-filters">
+					<form method="get">
+						<div class="price-range">
+							<span>Preço</span>
+							<div>
+								<input type="text" name="min_price" data-bcd__price_mask="true">
+								<input type="text" name="max_price" data-bcd__price_mask="true">
+							</div>
+						</div>
+						<div class="prop-status">
+							<span>Situação</span>
+							<div>
+								<div class="prop-status--item">
+									<input type="checkbox" name="prop_status[]" id="publish" value="publish">
+									<label for="publish">Publicados</label>
+								</div>
+								<div class="prop-status--item">
+									<input type="checkbox" name="prop_status[]" id="pending" value="pending">
+									<label for="pending">Pendentes</label>
+	
+								</div>
+								<div class="prop-status--item">
+									<input type="checkbox" name="prop_status[]" id="expired" value="expired">
+									<label for="expired">Expirados</label>
+								</div>
+								<div class="prop-status--item">
+									<input type="checkbox" name="prop_status[]" id="draft" value="draft">
+									<label for="draft">Rascunhos</label>
+								</div>
+								<div class="prop-status--item">
+									<input type="checkbox" name="prop_status[]" id="disapproved" value="disapproved">
+									<label for="disapproved">Reprovados</label>
+								</div>
+								<div class="prop-status--item">
+									<input type="checkbox" name="prop_status[]" id="private" value="private">
+									<label for="private">Privados</label>
+								</div>
+								<div class="prop-status--item">
+									<input type="checkbox" name="prop_status[]" id="sold" value="sold">
+									<label for="sold">Vendidos</label>
+								</div>
+							</div>
+						</div>
+						<div class="featured-only">
+							<span>Destaques</span>
+							<div>
+								<input type="checkbox" id="featured_only" name="featured_only" value="true">
+								<label for="featured_only">Mostrar apenas destaques</label>
+							</div>
+						</div>
+						<div class="submit">
+							<button role="submit">Aplicar filtros</button>
+						</div>
+					</form>
+				</div>
+			</article>
+			<article class="bcd__content--block medium">
+				<div class="test"></div>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ducimus iste error eligendi nostrum aliquid impedit eaque, similique optio, perspiciatis facere explicabo molestiae autem modi, aliquam debitis illo itaque quidem!
+			</article> -->
