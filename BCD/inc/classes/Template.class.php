@@ -8,7 +8,7 @@ class BCD__Template {
 	}
 
 	protected function bcd__block( string $block_content, string $block_class = '' ) {
-		echo '<article class="bcd__content--block ' . esc_attr( $block_class ) . '">' . wp_kses_post( $block_content ) . '</article><!-- .bcd__content--block -->';
+		echo '<article class="bcd__content--block ' . esc_attr( $block_class ) . '">' .  $block_content . '</article><!-- .bcd__content--block -->';
 	}
 
 	protected function bcd__end() {

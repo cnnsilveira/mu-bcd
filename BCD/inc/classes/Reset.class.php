@@ -32,7 +32,7 @@ class BCD__Reset {
 		if ( bcd__allowed_user() ) {
 			return;
 		}
-		wp_safe_redirect( home_url() );
+		wp_safe_redirect( is_user_logged_in() ? home_url() : wp_login_url() );
 	}
 
 	private function bcd__remove_admin_bar() {

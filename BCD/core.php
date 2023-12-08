@@ -12,17 +12,16 @@
  *
  *   ----------------------------------------------------------------------------------------
  */
-$request_parts = explode('/', BCD__REQUEST_URI);
+$request_parts = explode( '/', BCD__REQUEST_URI );
 if ( 2 <= count( $request_parts ) && BCD__HOME_SLUG === $request_parts[1] ) {
-	require_once BCD__FUNCTIONS . '/helper.php';
-	require_once BCD__FUNCTIONS . '/markup.php';
-	require_once BCD__CLASSES . '/Reset.php';
-	require_once BCD__CLASSES . '/Template.php';
+	require_once BCD__FUNCTIONS . '/helper.inc.php';
+	require_once BCD__CLASSES . '/Reset.class.php';
+	require_once BCD__CLASSES . '/Template.class.php';
 }
 /**
  *   ----------------------------------------------------------------------------------------
  *
- *   Rewrite rules and slugs.
+ *   Rewrite rules for the dashboard slugs.
  *
  *   ----------------------------------------------------------------------------------------
  */

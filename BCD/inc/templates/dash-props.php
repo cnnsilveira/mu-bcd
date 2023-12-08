@@ -11,9 +11,9 @@ $BCD__Home = new BCD__Reset();
 // Content.
 $BCD__Home = new class extends BCD__Template {
 	public function __construct() {
-		parent::bcd__start( $this->page_name );
-		parent::bcd__block( $this->bcd__prop_table(), 'table-block' );
-		parent::bcd__end();
+		$this->bcd__start( $this->page_name );
+		$this->bcd__block( $this->bcd__prop_table(), 'table-block' );
+		$this->bcd__end();
 	}
 
 	private $page_name = 'Imóveis';
