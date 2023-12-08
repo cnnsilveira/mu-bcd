@@ -40,9 +40,6 @@ class BCD__Reset {
 	}
 
 	private function bcd__clear_trash() {
-		remove_action( 'wp_head', 'print_emoji_detection_script', PHP_INT_MAX );
-		remove_action( 'wp_print_styles', 'print_emoji_styles', PHP_INT_MAX );
-	
 		add_action(
 			'body_class',
 			function() {
@@ -68,9 +65,37 @@ class BCD__Reset {
 				wp_dequeue_style( 'admin-bar' );
 				// Remove Dashicons.
 				wp_dequeue_style( 'dashicons' );
+				// Remove theme/plugins styles.
+				wp_dequeue_style( 'bootstrap' );
+				wp_dequeue_style( 'bootstrap-select' );
+				wp_dequeue_style( 'bootstrap-datepicker' );
+				wp_dequeue_style( 'font-awesome-5-all' );
+				wp_dequeue_style( 'slick-min' );
+				wp_dequeue_style( 'slick-theme-min' );
+				wp_dequeue_style( 'jquery-ui' );
+				wp_dequeue_style( 'houzez-icons' );
+				wp_dequeue_style( 'houzez-main' );
+				wp_dequeue_style( 'houzez-styling-options' );
+				wp_dequeue_style( 'houzez-style' );
+				wp_dequeue_style( 'redux-extendify-styles' );
+				wp_dequeue_style( 'bi-front' );
+				wp_dequeue_style( 'bi-cities-options' );
+				// Remove theme/plugins scripts.
+				wp_dequeue_script( 'bootstrap' );
+				wp_dequeue_script( 'bootstrap-select' );
+				wp_dequeue_script( 'slick' );
+				wp_dequeue_script( 'modernizr' );
+				wp_dequeue_script( 'slideout' );
+				wp_dequeue_script( 'theia-sticky-sidebar' );
+				wp_dequeue_script( 'houzez-custom' );
+				wp_dequeue_script( 'bi-custom' );
+				wp_dequeue_script( 'bi-cities-options' );
 			},
 			PHP_INT_MAX
 		);
+		
+		remove_action( 'wp_head', 'print_emoji_detection_script' );
+		remove_action( 'wp_print_styles', 'print_emoji_styles' );
 	}
 
 	private function bcd__enqueues() {
