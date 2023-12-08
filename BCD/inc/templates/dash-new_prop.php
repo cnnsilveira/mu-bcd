@@ -5,9 +5,6 @@
  * @package BCD
  */
 
-// Require helper and markup functions.
-bcd__require_functions();
-
 // Creates the main structure and opens the content tag.
 bcd__open( 'Novo imóvel' );
 

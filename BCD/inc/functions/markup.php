@@ -1,14 +1,11 @@
 <?php
-
+/*
 function bcd__header( string $page_title, $show_header = true ) {
-	bcd__invalid_page_redirect();
-	bcd__restricted_access();
-	bcd__enqueues();
-	bcd__remove_admin_bar();
+	new BCD__Reset();
 
 	?>
 	<!DOCTYPE html>
-	<html <?php language_attributes(); ?>>
+	<html lang="pt-BR">
 		<head>
 			<title><?php echo esc_attr( $page_title ); ?></title>
 			<meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -162,13 +159,15 @@ function bcd__content_start( string $title, array $button = null ) {
 function bcd__content_end() {
 	?>
 			</section>
-		</main>
+		</main><!-- .bcd__content -->
 	<?php
 }
 
 function bcd__footer() {
-	echo '</body></html>';
+	echo '<footer style="display: none">';
 	wp_footer();
+	echo '</footer>';
+	echo '</body></html>';
 }
 
 function bcd__open( string $title ) {
@@ -597,3 +596,4 @@ function bcd__prop_table() {
 		</article>
 	<?php
 }
+*/

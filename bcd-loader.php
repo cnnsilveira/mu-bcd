@@ -6,18 +6,17 @@ Plugin Name: BC Dashboard
 /**
  *   ----------------------------------------------------------------------------------------
  *
- *   Controls whether to enqueue minified or normal CSS and JS files.
+ *   Requires plugin's configuration files.
  *
  *   ----------------------------------------------------------------------------------------
  */
-define( 'BCD__MINIFIED', true );
+require_once __DIR__ . '/BCD/config.php';
 
 /**
  *   ----------------------------------------------------------------------------------------
  *
- *   Requires all functionalities.
+ *   Requires plugin's functionality.
  *
  *   ----------------------------------------------------------------------------------------
  */
-
-require_once __DIR__ . '/BCD/bcd.php';
+require_once __DIR__ . '/BCD/core.php';

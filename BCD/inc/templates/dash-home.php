@@ -5,15 +5,16 @@
  * @package BCD
  */
 
-// Require helper and markup functions.
-bcd__require_functions();
+// Redirects, enqueues, body classes, etc.
+$BCD__Home = new BCD__Reset();
 
-// Creates the main structure and opens the content tag.
-bcd__open( 'Dashboard' );
-
-/**
- * Add content here.
- */
-
-// Creates the main structure and closes the content tag.
-bcd__close();
+// Content.
+$BCD__Home = new class extends BCD__Template {
+	public function __construct() {
+		parent::bcd__start( $this->page_name );
+		parent::bcd__block( 'Test', '');
+		parent::bcd__end();
+	}
+	
+	private $page_name = 'Dashboard';
+};
