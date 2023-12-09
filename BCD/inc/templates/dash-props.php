@@ -6,10 +6,10 @@
  */
 
 // Redirects, enqueues, body classes, etc.
-$BCD__Home = new BCD__Reset();
+$BCD__Reset = new BCD__Reset();
 
 // Content.
-$BCD__Home = new class extends BCD__Template {
+$BCD__Props = new class extends BCD__Template {
 	public function __construct() {
 		$this->bcd__start( $this->page_name );
 		$this->bcd__block( $this->bcd__prop_table(), 'table-block' );
