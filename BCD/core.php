@@ -27,21 +27,15 @@ if ( 2 <= count( $request_parts ) && BCD__HOME_SLUG === $request_parts[1] ) {
  */
 add_action( 'init', 'bcd__rewrite_rules' );
 function bcd__rewrite_rules() {
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__NEW_PROP_SLUG . '/?', 'index.php?bcd__page=new_prop', 'top' );
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__FAVORITES_SLUG . '/?', 'index.php?bcd__page=favorite', 'top' );
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__SAVED_SEARCHES_SLUG . '/?', 'index.php?bcd__page=saved_searches', 'top' );
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/?', 'index.php?bcd__page=props', 'top' );
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__PROFILE_SLUG . '/?', 'index.php?bcd__page=profile', 'top' );
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__USERS_SLUG . '/?', 'index.php?bcd__page=users', 'top' );
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__DEFINITIONS_SLUG . '/?', 'index.php?bcd__page=definitions', 'top' );
-	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/?', 'index.php?bcd__page=home', 'top' );
+	foreach ( bcd__urls() as $id => $url ) {
+		add_rewrite_rule( '^' . substr( $url, 1 ) . '?', 'index.php?bcd__page=' . $id, 'top' );
+	}
 
 	if ( ! get_option( 'bcd' ) ) {
 		add_option( 'bcd', true );
 		flush_rewrite_rules();
 	}
 }
-
 add_filter( 'query_vars', 'bcd__query_vars' );
 function bcd__query_vars( $vars ) {
 	$vars[] = 'bcd__page';

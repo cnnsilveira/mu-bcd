@@ -9,12 +9,12 @@
 $BCD__Reset = new BCD__Reset();
 
 // Content.
-$BCD__Favorite = new class extends BCD__Template {
+$BCD__Favorite = new class() extends BCD__Template {
 	public function __construct() {
-		parent::bcd__start( $this->page_name );
-		parent::bcd__block( 'Página dos imóveis favoritos', '');
-		parent::bcd__end();
+		$this->bcd__start( $this->page_name );
+		$this->bcd__block( 'Página dos imóveis favoritos', '' );
+		$this->bcd__end();
 	}
-	
+
 	private $page_name = 'Favoritos';
 };

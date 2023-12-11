@@ -8,7 +8,7 @@ class BCD__Template {
 	}
 
 	protected function bcd__block( string $block_content, string $block_class = '' ) {
-		echo '<article class="bcd__content--block ' . esc_attr( $block_class ) . '">' .  $block_content . '</article><!-- .bcd__content--block -->';
+		echo '<article class="bcd__content--block ' . esc_attr( $block_class ) . '">' . $block_content . '</article><!-- .bcd__content--block -->';
 	}
 
 	protected function bcd__end() {
@@ -33,16 +33,19 @@ class BCD__Template {
 	}
 
 	private function bcd__header() {
+		// echo '<pre style="color: #000; background: #fff; position: relative; z-index: 1012909312;">';
+		// print_r( wp_get_current_user()->display_name );
+		// echo '</pre>';
 		?>
 		<header class="bcd__header">
 			<div class="bcd__header--right">
 				<div class="bcd__header--user">
-					<span>John Doe</span>
+					<span><?php echo esc_html( wp_get_current_user()->display_name ); ?></span>
 					<i class="fa-solid fa-circle-user"></i>
 					<nav class="bcd__header--user-actions">
 						<ul>
-							<li><a href="#">Meu perfil</a></li>
-							<li><a href="#">Log out</a></li>
+							<li><a href="<?php echo esc_url( home_url( bcd__urls( 'profile' ) ) ); ?>">Meu perfil</a></li>
+							<li><a href="<?php echo esc_url( wp_logout_url() ); ?>">Log out</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -79,59 +82,37 @@ class BCD__Template {
 
 	private function bcd__sidebar() {
 		$pages = array(
-			'profile'        => array(
-				'title' => 'Meu perfil',
-				'icon'  => '<i class="fa-solid fa-circle-user"></i>',
-				'link'  => bcd__page_url( BCD__PROFILE_SLUG ),
-				'slug'  => BCD__HOME_SLUG . '/' . BCD__PROFILE_SLUG . '/',
+			'index'          => array(
+				'title' => 'Início',
+				'icon'  => '<i class="fa-solid fa-house-chimney"></i>',
 			),
 			'props'          => array(
 				'title' => 'Lista de imóveis',
 				'icon'  => '<i class="fa-solid fa-building"></i>',
-				'link'  => bcd__page_url( BCD__PROPS_SLUG ),
-				'slug'  => BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/',
 			),
 			'new_prop'       => array(
 				'title' => 'Novo imóvel',
 				'icon'  => '<i class="fa-solid fa-file-circle-plus"></i>',
-				'link'  => bcd__page_url( BCD__PROPS_SLUG . '/' . BCD__NEW_PROP_SLUG ),
-				'slug'  => BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__NEW_PROP_SLUG . '/',
 			),
-			'favorites'      => array(
+			'favorite'       => array(
 				'title' => 'Favoritos',
 				'icon'  => '<i class="fa-solid fa-heart"></i>',
-				'link'  => bcd__page_url( BCD__PROPS_SLUG . '/' . BCD__FAVORITES_SLUG ),
-				'slug'  => BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__FAVORITES_SLUG . '/',
 			),
 			'saved_searches' => array(
 				'title' => 'Pesquisas salvas',
 				'icon'  => '<i class="fa-solid fa-magnifying-glass-location"></i>',
-				'link'  => bcd__page_url( BCD__PROPS_SLUG . '/' . BCD__SAVED_SEARCHES_SLUG ),
-				'slug'  => BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__SAVED_SEARCHES_SLUG . '/',
 			),
 			'users'          => array(
 				'title' => 'Usuários',
 				'icon'  => '<i class="fa-solid fa-users"></i>',
-				'link'  => bcd__page_url( BCD__USERS_SLUG ),
-				'slug'  => BCD__HOME_SLUG . '/' . BCD__USERS_SLUG . '/',
 			),
 			'definitions'    => array(
 				'title' => 'Definições',
 				'icon'  => '<i class="fa-solid fa-sliders"></i>',
-				'link'  => bcd__page_url( BCD__DEFINITIONS_SLUG ),
-				'slug'  => BCD__HOME_SLUG . '/' . BCD__DEFINITIONS_SLUG . '/',
 			),
-			'back_to_site'   => array(
-				'title' => 'Voltar para o site',
-				'icon'  => '<i class="fa-solid fa-angles-left"></i>',
-				'link'  => home_url(),
-				'slug'  => null,
-			),
-			'logout'         => array(
-				'title' => 'Sair',
-				'icon'  => '<i class="fa-solid fa-right-from-bracket"></i>',
-				'link'  => wp_logout_url(),
-				'slug'  => null,
+			'profile'        => array(
+				'title' => 'Meu perfil',
+				'icon'  => '<i class="fa-solid fa-circle-user"></i>',
 			),
 		);
 		?>
@@ -171,10 +152,17 @@ class BCD__Template {
 				<ul class="bcd__sidebar--list">
 					<?php
 					foreach ( $pages as $id => $info ) {
-						$active = BCD__REQUEST_URI === $info['slug'] ? ' active' : '';
-						echo '<li class="bcd__sidebar--item ' . esc_attr( $id ) . esc_attr( $active ) . '"><div class="bcd__sidebar--tip">' . esc_html( $info['title'] ) . '</div><a href="' . esc_url( $info['link'] ) . '">' . wp_kses_post( $info['icon'] ) . '</a></li><!-- .bcd__sidebar--item -->';
+						$page_slug = bcd__urls( $id );
+						$active    = BCD__REQUEST_URI === $page_slug ? ' active' : '';
+						echo '<li class="bcd__sidebar--item ' . esc_attr( $id ) . esc_attr( $active ) . '"><div class="bcd__sidebar--tip">' . esc_html( $info['title'] ) . '</div><a href="' . esc_url( home_url( $page_slug ) ) . '">' . wp_kses_post( $info['icon'] ) . '</a></li><!-- .bcd__sidebar--item -->';
 					}
 					?>
+					<li class="bcd__sidebar--item">
+						<div class="bcd__sidebar--tip">Voltar para o site</div><a href="<?php echo esc_url( home_url() ); ?>"><i class="fa-solid fa-angles-left"></i></a>
+					</li>
+					<li class="bcd__sidebar--item">
+						<div class="bcd__sidebar--tip">Sair</div><a href="<?php echo esc_url( wp_logout_url() ); ?>"><i class="fa-solid fa-right-from-bracket"></i></a>
+					</li>
 				</ul><!-- .bcd__sidebar--list -->
 			</nav><!-- .bcd__sidebar--nav -->
 		</aside><!-- .bcd__sidebar -->

@@ -11,11 +11,11 @@ if ( ! function_exists( 'bcd__allowed_user' ) ) {
 	 *
 	 * @package BCD
 	 */
-	function bcd__allowed_user() {
+	function bcd__allowed_user(): bool {
 		return current_user_can( 'administrator' );
 	}
 }
 
-function bcd__page_url( string $page ) {
+function bcd__page_url( string $page ): string {
 	return home_url( 'index' === $page ? '/dashboard/' : '/dashboard/' . $page );
 }
