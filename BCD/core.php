@@ -36,7 +36,10 @@ function bcd__rewrite_rules() {
 	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/' . BCD__DEFINITIONS_SLUG . '/?', 'index.php?bcd__page=definitions', 'top' );
 	add_rewrite_rule( '^' . BCD__HOME_SLUG . '/?', 'index.php?bcd__page=home', 'top' );
 
-	// flush_rewrite_rules();
+	if ( ! get_option( 'bcd' ) ) {
+		add_option( 'bcd', true );
+		flush_rewrite_rules();
+	}
 }
 
 add_filter( 'query_vars', 'bcd__query_vars' );
