@@ -12,6 +12,9 @@ $BCD__Reset = new BCD__Reset();
 $BCD__Home = new class() extends BCD__Template {
 	public function __construct() {
 		$this->bcd__start( $this->page_name );
+		$this->bcd__block( 'Página principal da dashboard' );
+		$this->bcd__block( 'Página principal da dashboard', 'small' );
+		$this->bcd__block( 'Página principal da dashboard', 'small' );
 		$this->bcd__block( 'Página principal da dashboard', 'small' );
 		$this->bcd__end();
 	}

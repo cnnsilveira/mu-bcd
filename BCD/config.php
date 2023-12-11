@@ -7,7 +7,7 @@
  *
  *   ----------------------------------------------------------------------------------------
  */
-define( 'BCD__MINIFIED', true );
+define( 'BCD__MINIFIED', false );
 
 /**
  *   ----------------------------------------------------------------------------------------
@@ -56,13 +56,13 @@ define( 'BCD__DEFINITIONS_SLUG', 'definicoes' );
 // Urls function.
 if ( ! function_exists( 'bcd__urls' ) ) {
 	/**
-	 * Generates links for the dashboard pages.
+	 * Generates slugs for the dashboard pages.
 	 *
 	 * @param string $page    Optional. Specific page link.
 	 *
-	 * @return string|array URL string if $page is set, links array otherwise.
+	 * @return string|array URL string if $page is set, slugs array otherwise.
 	 */
-	function bcd__urls( string $page = null, bool $slug_only = false ): mixed {
+	function bcd__urls( string $page = null ): mixed {
 		$urls = array(
 			'new_prop'       => '/' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__NEW_PROP_SLUG . '/',
 			'favorite'       => '/' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__FAVORITES_SLUG . '/',
