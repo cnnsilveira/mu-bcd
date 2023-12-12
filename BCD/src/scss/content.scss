@@ -62,6 +62,10 @@
             width: calc(66% - 10px);
         }
 
+		&.half {
+			width: calc(50% - 10px);
+		}
+
         &.pagination-block {
             display: flex;
             background: #1e1e1e;
