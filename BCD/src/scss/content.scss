@@ -1,8 +1,8 @@
 .bcd__content {
-    margin: 80px 10px 10px 70px;
+    margin: 75px 10px 5px 70px !important;
     padding: 10px 20px;
     width: 100%;
-    height: calc(100dvh - 90px);
+    height: calc(100dvh - 80px);
     color: #000000;
     display: flex;
     flex-direction: column;
@@ -60,6 +60,50 @@
 
         &.medium {
             width: calc(66% - 10px);
+        }
+
+        &.pagination-block {
+            display: flex;
+            background: #1e1e1e;
+            padding: 0;
+            overflow: hidden;
+            width: fit-content;
+            flex-grow: initial;
+            float: right;
+            margin: auto;
+
+            &>span,
+            &>a {
+                color: #fff;
+                transition: all .2s;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &.current,
+                &.dots {
+                    cursor: default;
+                }
+
+                &.current {
+                    background: #5182ff;
+                }
+
+                &.next {
+                    width: fit-content;
+                    padding: 0 15px;
+                }
+            }
+
+            &>a:hover {
+                background: #5182ff;
+            }
+
+            &:has(a:hover, span:not(.current):hover) .current {
+                background: #1e1e1e;
+            }
         }
     }
 }

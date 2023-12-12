@@ -17,4 +17,7 @@ $BCD__New_Prop = new class() extends BCD__Template {
 	}
 
 	private $page_name = 'Novo imóvel';
+
+	private function bcd__description_block() {
+	}
 };

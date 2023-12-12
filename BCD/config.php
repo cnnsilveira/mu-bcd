@@ -41,6 +41,9 @@ define( 'BCD__PROPS_SLUG', 'imoveis' );
 // New Property.
 define( 'BCD__NEW_PROP_SLUG', 'cadastro' );
 
+// Edit Property.
+define( 'BCD__EDIT_PROP_SLUG', 'editar' );
+
 // Favorites.
 define( 'BCD__FAVORITES_SLUG', 'favoritos' );
 
@@ -64,6 +67,7 @@ if ( ! function_exists( 'bcd__urls' ) ) {
 	 */
 	function bcd__urls( string $page = null ): mixed {
 		$urls = array(
+			'edit_prop'      => '/' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__EDIT_PROP_SLUG . '/',
 			'new_prop'       => '/' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__NEW_PROP_SLUG . '/',
 			'favorite'       => '/' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__FAVORITES_SLUG . '/',
 			'saved_searches' => '/' . BCD__HOME_SLUG . '/' . BCD__PROPS_SLUG . '/' . BCD__SAVED_SEARCHES_SLUG . '/',

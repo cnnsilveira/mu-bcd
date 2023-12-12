@@ -19,3 +19,8 @@ if ( ! function_exists( 'bcd__allowed_user' ) ) {
 function bcd__page_url( string $page ): string {
 	return home_url( 'index' === $page ? '/dashboard/' : '/dashboard/' . $page );
 }
+
+function bcd__brl_value( string $value ) {
+	$fmt = numfmt_create( 'pt_BR', NumberFormatter::CURRENCY );
+	return numfmt_format_currency( $fmt, $value, 'BRL' );
+}

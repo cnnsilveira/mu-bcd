@@ -39,6 +39,7 @@ function bcd__rewrite_rules() {
 add_filter( 'query_vars', 'bcd__query_vars' );
 function bcd__query_vars( $vars ) {
 	$vars[] = 'bcd__page';
+	$vars[] = 'paged';
 	return $vars;
 }
 
@@ -48,4 +49,9 @@ function bcd__template( $template ) {
 		$template = BCD__TEMPLATES . 'dash-' . get_query_var( 'bcd__page' ) . '.php';
 	}
 	return $template;
+}
+
+add_action( 'after_setup_theme', 'bcd__image_size' );
+function bcd__image_size() {
+	add_image_size( 'bcd__prop_thumb', 50, 50, true );
 }

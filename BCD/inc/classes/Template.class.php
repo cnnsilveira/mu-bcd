@@ -84,7 +84,7 @@ class BCD__Template {
 		$pages = array(
 			'index'          => array(
 				'title' => 'Início',
-				'icon'  => '<i class="fa-solid fa-house-chimney"></i>',
+				'icon'  => '<i class="fa-solid fa-chart-pie"></i>',
 			),
 			'props'          => array(
 				'title' => 'Lista de imóveis',
