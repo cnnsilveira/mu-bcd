@@ -1,5 +1,6 @@
 <?php
 class BCD__Template {
+	protected $page_name;
 
 	protected function bcd__start( string $page_name ) {
 		$this->bcd__doctype( $page_name );

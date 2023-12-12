@@ -2,7 +2,7 @@
 /**
  * This file generates the markup for the index page.
  *
- * @package BCD
+ * @package BCD Platform
  */
 
 // Redirects, enqueues, body classes, etc.
@@ -10,18 +10,20 @@ $BCD__Reset = new BCD__Reset();
 
 // Content.
 $BCD__Home = new class() extends BCD__Template {
+	private $insights;
+
 	public function __construct() {
+		$this->page_name = 'Dashboard';
+		$this->insights = new Fave_Insights();
+
 		$this->bcd__start( $this->page_name );
 		$this->bcd__block( 'Página principal da dashboard' );
-		$this->bcd__chart();
+		$this->bcd__device_chart();
 		$this->bcd__end();
 	}
 
-	private $page_name = 'Dashboard';
-
-	private function bcd__chart() {
-		$insights       = new Fave_Insights();
-		$insights_stats = $insights->fave_user_stats( get_current_user_id() );
+	private function bcd__device_chart() {
+		$insights_stats = $this->insights->fave_user_stats( get_current_user_id() );
 		$houzez_local   = houzez_get_localization();
 
 		$count_label = $houzez_local['views_label'];
@@ -56,10 +58,10 @@ $BCD__Home = new class() extends BCD__Template {
 		}
 
 		$output = '
-		<div class="dashboard-content-block dashboard-statistic-block">
+		<div class="bcd__chart--mobile">
 			<h3><i class="fa-solid fa-mobile-screen"></i>Dispositivos</h3>';
 
-		if ( ! empty( $devices ) ) {
+		if ( 1 === 1 ) {
 			$output .= '
 			<div class="d-flex align-items-center sm-column">
 				<div class="statistic-doughnut-chart">
@@ -124,6 +126,6 @@ $BCD__Home = new class() extends BCD__Template {
 		}
 		$output .= '</div><!-- dashboard-statistic-block -->';
 
-		$this->bcd__block( $output );
+		$this->bcd__block( $output, 'bcd__chart half' );
 	}
 };

@@ -2,7 +2,7 @@
 /**
  * This file generates the markup for the property lists page.
  *
- * @package BCD
+ * @package BCD Platform
  */
 
 // Redirects, enqueues, body classes, etc.
@@ -11,13 +11,13 @@ $BCD__Reset = new BCD__Reset();
 // Content.
 $BCD__Props = new class() extends BCD__Template {
 	public function __construct() {
+		$this->page_name = 'Imóveis';
+		
 		$this->bcd__start( $this->page_name );
 		// $this->bcd__block( $this->bcd__test(), '' );
 		$this->bcd__prop_table();
 		$this->bcd__end();
 	}
-
-	private $page_name = 'Imóveis';
 
 	private function bcd__status_label( string $status ) {
 		$labels = array(

@@ -26,7 +26,7 @@ class BCD__Reset {
 	 *
 	 * Check `bcd__allowed_user()` to see allowed users logic.
 	 *
-	 * @package BCD
+	 * @package BCD Platform
 	 */
 	private function bcd__restricted_access() {
 		if ( bcd__allowed_user() ) {

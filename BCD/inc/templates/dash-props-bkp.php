@@ -2,7 +2,7 @@
 /**
  * This file generates the markup for the property lists page.
  *
- * @package BCD
+ * @package BCD Platform
  */
 
 // Redirects, enqueues, body classes, etc.
