@@ -45,6 +45,7 @@ $BCD__Props = new class() extends BCD__Template {
 		$pagination = '';
 
 		$content = '<div class="bcd__content--props-table">';
+		$empty = '';
 		if ( $props_query->have_posts() ) {
 			$content .= '
                 <table class="bcd__props_table">
@@ -121,7 +122,7 @@ $BCD__Props = new class() extends BCD__Template {
                 ';
 			}
 
-			$content .= '    
+			$content .= '
                 </tbody>
             </table>
             ';
@@ -138,11 +139,12 @@ $BCD__Props = new class() extends BCD__Template {
 
 		} else {
 			$content .= '<span class="bcd__content--no-posts">Nenhum imóvel encontrado.</span>';
+			$empty = ' empty';
 		}
 
 		$content .= '</div><!-- .bcd__content--props-table -->';
 
-		$this->bcd__block( $content, 'table-block' );
+		$this->bcd__block( $content, 'table-block' . $empty );
 		// $this->bcd__block( $pagination, 'pagination-block' );
 		wp_reset_postdata();
 	}

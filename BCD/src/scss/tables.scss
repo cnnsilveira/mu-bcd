@@ -3,7 +3,7 @@
 .bcd__content--block.table-block {
     padding: 0;
 
-    .empty {
+    &.empty {
         padding: 20px;
     }
 
