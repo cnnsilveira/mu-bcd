@@ -1,9 +1,5 @@
 // SCSS import.
-import "./scss/global.scss";
-import "./scss/header.scss";
-import "./scss/sidebar.scss";
-import "./scss/tables.scss";
-import "./scss/charts.scss";
+import "./scss/styles.scss";
 
 // Scripts import.
 import BCD_Scripts from "./js/DashScripts";
