@@ -162,7 +162,7 @@ class BCD__Template {
 						<div class="bcd__sidebar--tip">Voltar para o site</div><a href="<?php echo esc_url( home_url() ); ?>"><i class="fa-solid fa-angles-left"></i></a>
 					</li>
 					<li class="bcd__sidebar--item">
-						<div class="bcd__sidebar--tip">Sair</div><a href="<?php echo esc_url( wp_logout_url() ); ?>"><i class="fa-solid fa-right-from-bracket"></i></a>
+						<div class="bcd__sidebar--tip">Log out</div><a href="<?php echo esc_url( wp_logout_url() ); ?>"><i class="fa-solid fa-right-from-bracket"></i></a>
 					</li>
 				</ul><!-- .bcd__sidebar--list -->
 			</nav><!-- .bcd__sidebar--nav -->
