@@ -1,10 +1,11 @@
 <?php
 class BCD__Template {
 	protected $page_name;
+	protected $header_nav = null;
 
 	protected function bcd__start( string $page_name ) {
 		$this->bcd__doctype( $page_name );
-		$this->bcd__header();
+		$this->bcd__header( $this->header_nav );
 		$this->bcd__content_start( $page_name );
 	}
 
@@ -33,12 +34,31 @@ class BCD__Template {
 			wp_body_open();
 	}
 
-	private function bcd__header() {
-		// echo '<pre style="color: #000; background: #fff; position: relative; z-index: 1012909312;">';
-		// print_r( wp_get_current_user()->display_name );
-		// echo '</pre>';
+	private function bcd__header_nav( array $items ) {
+		$output = '
+		<div class="bcd__header--left">
+			<ul>
+		';
+
+		foreach ( $items as $nicename => $href ) {
+			$active = substr( $href, 1 ) === $_SERVER['QUERY_STRING'] ? ' active' : '';
+			$output .= '<li><a class="' . $active . '" href="' . esc_url( $href ) . '">' . esc_html( $nicename ) . '</a></li>';
+		}
+		
+		$output .= '
+			</ul>
+		</div><!-- .bcd__header--left -->
+		';
+
+		return $output;
+	}
+
+	private function bcd__header( array $header_nav = null ) {
 		?>
 		<header class="bcd__header">
+
+			<?php echo null !== $header_nav ? $this->bcd__header_nav( $header_nav ) : ''; ?>
+
 			<div class="bcd__header--right">
 				<div class="bcd__header--user">
 					<span><?php echo esc_html( wp_get_current_user()->display_name ); ?></span>
@@ -154,7 +174,7 @@ class BCD__Template {
 					<?php
 					foreach ( $pages as $id => $info ) {
 						$page_slug = bcd__urls( $id );
-						$active    = BCD__REQUEST_URI === $page_slug ? ' active' : '';
+						$active    =  explode( '?', BCD__REQUEST_URI )[0] === $page_slug ? ' active' : '';
 						echo '<li class="bcd__sidebar--item ' . esc_attr( $id ) . esc_attr( $active ) . '"><div class="bcd__sidebar--tip">' . esc_html( $info['title'] ) . '</div><a href="' . esc_url( home_url( $page_slug ) ) . '">' . wp_kses_post( $info['icon'] ) . '</a></li><!-- .bcd__sidebar--item -->';
 					}
 					?>

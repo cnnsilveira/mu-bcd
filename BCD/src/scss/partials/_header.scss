@@ -1,5 +1,5 @@
 .bcd__header {
-    width: calc(100dvw - 70px);
+    width: calc(100dvw - 70px) !important;
     height: 70px;
     position: fixed;
     top: 0;
@@ -7,10 +7,46 @@
     background: #1e1e1e;
     padding: 0 30px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 0 5px #00000088;
     border-bottom-right-radius: 20px;
+
+	&--left {
+		height: 100%;
+
+		ul {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+
+			li {
+				height: 100%;
+				padding-top: 12px;
+				position: relative;
+
+				a {
+					padding: 8px 12px 20px;
+					height: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					border-radius: 10px 10px 0 0;
+					transition: all .2s;
+
+					&.active,
+					&:hover {
+						background: #5182ff;
+					}
+				}
+			}
+		}
+	}
+
+	&--right {
+		margin-left: auto;
+	}
 
     &--user {
         display: flex;
