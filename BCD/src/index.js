@@ -2,12 +2,14 @@
 import "./scss/global.scss";
 import "./scss/header.scss";
 import "./scss/sidebar.scss";
-import "./scss/content.scss";
 import "./scss/tables.scss";
+import "./scss/charts.scss";
 
 // Scripts import.
-import DashScripts from "./js/DashScripts";
+import BCD_Scripts from "./js/DashScripts";
+import BCD_Chart from "./js/Chart";
 
 jQuery(document).ready(() => {
-	const dashScripts = new DashScripts();
+	const dashScripts = new BCD_Scripts();
+	const dashChart = new BCD_Chart();
 });

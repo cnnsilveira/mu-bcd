@@ -117,9 +117,11 @@ class BCD__Reset {
 				wp_enqueue_style( 'bcd', BCD__URI . $bcd__css_path, array(), false );
 				wp_enqueue_script( 'bcd', BCD__URI . $bcd__js_path, array( 'jquery' ), false, true );
 
-				// Include custom font.
+				// Includes Chart.JS
+				wp_enqueue_script( 'bcd__chart', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js', array( 'jquery' ), false, true );
+				// Includes custom font.
 				wp_enqueue_style( 'bcd__google-fonts', 'https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap', array(), false );
-				// Include Font Awesome kit.
+				// Includes Font Awesome kit.
 				wp_enqueue_script( 'bcd__font-awesome', 'https://kit.fontawesome.com/13ca972e4c.js', array(), false, true );
 			}
 		);

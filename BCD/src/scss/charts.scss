@@ -1,0 +1,67 @@
+.bcd__chart {
+	a {
+		color: #1e1e1e;
+	}
+	&--title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		margin-bottom: 20px;
+
+		.icon {
+			width: 30px;
+			height: 30px;
+			font-size: 14px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #5182ff;
+			border-radius: 50%;
+			color: #fff;
+
+			.fa-chrome {
+				font-size: 16px;
+			}
+		}
+	}
+	&--heading {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	&--tabs {
+		ul {
+			display: flex;
+			gap: 10px;
+
+			a {
+				padding: 8px 12px;
+				border-radius: 15px;
+				transition: all .2s;
+
+				&.active,
+				&:hover {
+					color: #fff;
+					background: #5182ff;
+				}
+			}
+		}
+	}
+	&--content {
+		.tab-pane {
+			&:not(.active) {
+				display: none;
+			}
+		}
+	}
+	&.half {
+		.bcd__chart--content {
+			display: flex;
+			gap: 10px;
+			align-items: flex-start;
+			justify-content: space-between;
+			width: 100%;
+		}
+	}
+}

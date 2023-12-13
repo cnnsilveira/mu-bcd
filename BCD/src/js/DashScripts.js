@@ -1,4 +1,4 @@
-class DashScripts {
+class BCD_Scripts {
 	constructor() {
 		this.events();
 	}
@@ -13,4 +13,4 @@ class DashScripts {
 	}
 }
 
-export default DashScripts;
+export default BCD_Scripts;
