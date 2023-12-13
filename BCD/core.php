@@ -66,10 +66,10 @@ if ( ! class_exists( 'BCD_Platform' ) ) {
 		}
 
 		public function actions() {
-			add_action( 'init', array(__CLASS__, 'bcd__rewrite_rules' ) );
-			add_action( 'query_vars', array(__CLASS__, 'bcd__query_vars' ) );
-			add_action( 'template_include', array(__CLASS__, 'bcd__template' ) );
-			add_action( 'after_setup_theme', array(__CLASS__, 'bcd__image_size' ) );
+			add_action( 'init', array( __CLASS__, 'bcd__rewrite_rules' ) );
+			add_action( 'query_vars', array( __CLASS__, 'bcd__query_vars' ) );
+			add_action( 'template_include', array( __CLASS__, 'bcd__template' ) );
+			add_action( 'after_setup_theme', array( __CLASS__, 'bcd__image_size' ) );
 		}
 
 		public function files() {
