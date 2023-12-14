@@ -1,4 +1,7 @@
 <?php
+
+defined( 'ABSPATH' ) || exit;
+
 class BCD__Reset {
 	public function __construct() {
 		$this->bcd__invalid_page_redirect();

@@ -5,6 +5,8 @@
  * @package BCD Platform
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! class_exists( 'BCD_Platform' ) ) {
 
 	final class BCD_Platform {

@@ -1,4 +1,7 @@
 <?php
+
+defined( 'ABSPATH' ) || exit;
+
 class BCD__Template {
 	protected $page_name;
 	protected $header_nav = null;

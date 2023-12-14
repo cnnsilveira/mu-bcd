@@ -5,6 +5,8 @@
  * @package BCD Platform
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! function_exists( 'bcd__allowed_user' ) ) {
 	/**
 	 * Tells if the current user is allowed to see the dashboard.

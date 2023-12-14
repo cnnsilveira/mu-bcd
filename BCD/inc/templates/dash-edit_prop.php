@@ -5,6 +5,8 @@
  * @package BCD Platform
  */
 
+defined( 'ABSPATH' ) || exit;
+
 // Redirects, enqueues, body classes, etc.
 $BCD__Reset = new BCD__Reset();
 
