@@ -29,6 +29,14 @@ $BCD__Definitions = new class() extends BCD__Template {
 		$this->bcd__end();
 	}
 
+	private function bcd__default_page() {
+		if ( ! isset( $_GET['mod'] ) ) {
+			$defaut_page = '?mod=cidades-e-bairros';
+
+			wp_safe_redirect( home_url( bcd__urls( 'definitions' ) . $defaut_page ) );
+		}
+	}
+
 	private function bcd__set_table_info() {
 		switch ( $_GET['mod'] ) {
 			case 'cidades-e-bairros':
@@ -354,11 +362,6 @@ $BCD__Definitions = new class() extends BCD__Template {
 			</table><!-- .bcd__table -->
 		</div><!-- .bcd__content--table -->
 		';
-
-		if ( isset( $_POST['bcd__action'] ) ) {
-			var_dump( $_POST );
-			var_dump( $_SERVER['HTTP_REFERER'] );
-		}
 		
 		return $markup;
 	}
@@ -377,14 +380,6 @@ $BCD__Definitions = new class() extends BCD__Template {
 			);
 		}
 		return get_terms( $terms_args );
-	}
-
-	private function bcd__default_page() {
-		if ( ! isset( $_GET['mod'] ) ) {
-			$defaut_page = '?mod=cidades-e-bairros';
-
-			wp_safe_redirect( home_url( bcd__urls( 'definitions' ) . $defaut_page ) );
-		}
 	}
 
 	private function bcd__set_header_nav() {

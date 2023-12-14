@@ -56,58 +56,67 @@ class BCD__Reset {
 			function() {
 				global $wp_styles, $wp_scripts;
 
-				$styles_whitelist  = array(
-					'bcd',
-					'bcd__google-fonts',
+				$plugins_whitelist = array(
+					'ewww-image-optimizer',
+					'code-profiler',
+					'query-monitor',
 				);
-				$scripts_whitelist = array(
-					'jquery',
-					'jquery-ui-core',
-					'wp-util',
-					'wp-a11y',
-					'underscore',
-					'wp-api',
-					'customize-base',
-					'heartbeat',
-					'bcd',
-					'bcd__font-awesome',
-				);
-				foreach ( $wp_styles->queue as $style ) {
-					if ( ! in_array( $style, $styles_whitelist ) ) {
-						wp_dequeue_style( $style );
-						wp_deregister_style( $style );
+
+				$plugins_path = content_url( '/plugins/' );
+				$themes_path = content_url( '/themes/' );
+
+				foreach ( $wp_styles->registered as $style ) {
+					if ( str_starts_with( $style->src, $themes_path ) || ( str_starts_with( $style->src, $plugins_path ) && ! in_array( $this->between( $plugins_path, '/', $style->src ), $plugins_whitelist ) ) ) {
+						wp_dequeue_style( $style->handle );
+						wp_deregister_style( $style->handle );
 					}
 				}
-				foreach ( $wp_scripts->queue as $script ) {
-					if ( ! in_array( $script, $scripts_whitelist ) ) {
-						// wp_dequeue_script( $script );
-						// wp_deregister_script( $script );
+
+				foreach ( $wp_scripts->registered as $script ) {
+					if ( str_starts_with( $script->src, $themes_path ) || ( str_starts_with( $script->src, $plugins_path ) && ! in_array( $this->between( $plugins_path, '/', $script->src ), $plugins_whitelist ) ) ) {
+						wp_dequeue_script( $script->handle );
+						wp_deregister_script( $script->handle );
 					}
 				}
+				
+				wp_dequeue_style( 'dashicons' );
+				wp_dequeue_style( 'admin-bar' );
+				wp_dequeue_style( 'redux-google-fonts-houzez_options' );
+				wp_dequeue_style( 'core-block-supports-duotone' );
+				wp_dequeue_style( 'classic-theme-styles' );
+				wp_dequeue_style( 'global-styles' );
+				wp_dequeue_style( 'wp-block-library' );
+				wp_dequeue_script( 'admin-bar' );
+				wp_dequeue_script( 'comment-reply' );
+				wp_dequeue_script( 'wp-embed' );
+				wp_dequeue_script( 'elementor-pro-app' );
 			},
 			PHP_INT_MAX
 		);
 
-		add_action(
-			'init',
+		add_action( 
+			'wp_footer', 
 			function () {
-				remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-				remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-				remove_action( 'wp_print_styles', 'print_emoji_styles' );
-				remove_action( 'admin_print_styles', 'print_emoji_styles' );
-				remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-				remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-				remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-				add_filter( 'emoji_svg_url', '__return_false' );
-				remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-				remove_action( 'template_redirect', 'wp_shortlink_header', 11, 0 );
-				remove_action( 'wp_head', 'feed_links', 2 );
-				remove_action( 'wp_head', 'feed_links_extra', 3 );
+				wp_dequeue_script( 'nta-js-popup' );
+    			wp_deregister_script('nta-js-popup');
+				
+				wp_dequeue_style( 'core-block-supports-duotone' );
+				wp_deregister_style( 'core-block-supports-duotone' );
 			},
 			PHP_INT_MAX
 		);
-		remove_action( 'wp_head', 'print_emoji_detection_script' );
+
+		add_filter( 'emoji_svg_url', '__return_false' );
+		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
+		remove_action( 'template_redirect', 'wp_shortlink_header', 11, 0 );
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		remove_action( 'wp_head', 'feed_links', 2 );
+		remove_action( 'wp_head', 'feed_links_extra', 3 );
+		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 	}
 
 	private function bcd__enqueues() {
@@ -129,4 +138,18 @@ class BCD__Reset {
 			}
 		);
 	}
+
+	private function before ( $str1, $str2 ) {
+        return substr( $str2, 0, strpos( $str2, $str1 ) );
+    }
+
+	private function after( $str1, $str2 ) {
+        if ( ! is_bool( strpos( $str2, $str1) ) ) {
+        	return substr( $str2, strpos( $str2, $str1 ) + strlen( $str1 ) );
+		}
+    }
+
+	private function between ( $str1, $str2, $str3 )  {
+        return $this->before( $str2, $this->after( $str1, $str3 ) );
+    }
 }
