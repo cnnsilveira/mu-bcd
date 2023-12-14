@@ -43,11 +43,10 @@ $BCD__Home = new class() extends BCD__Template {
 		$this->user_id        = get_current_user_id();
 		$this->insights       = new Fave_Insights();
 		$this->insights_stats = $this->insights->fave_user_stats( $this->user_id );
-		$this->local          = houzez_get_localization();
 	}
 
 	private function bcd__chart_info( $type ) {
-		$this->count_label = $this->local['views_label'];
+		$this->count_label = 'visitas';
 		$this->chart_data  = array();
 		$this->other_data  = array();
 		$this->type        = $this->insights_stats['others'][ $type ];
@@ -71,8 +70,8 @@ $BCD__Home = new class() extends BCD__Template {
 			data-labels=\'' . json_encode( $labels ) . '\' 
 			data-views=\'' . json_encode( $views ) . '\'
 			data-unique=\'' . json_encode( $unique_views ) . '\'
-			data-visit-label=\'' . esc_attr( $this->local['visits_label'] ) . '\'
-			data-unique-label=\'' . esc_attr( $this->local['unique_label'] ) . '\' 
+			data-visit-label=\'' . esc_attr( 'Visitas' ) . '\'
+			data-unique-label=\'' . esc_attr( 'Visitas únicas' ) . '\' 
 			height="65"
 		></canvas>';
 	}
@@ -186,7 +185,7 @@ $BCD__Home = new class() extends BCD__Template {
 				$item_name = esc_html__( 'Unknown', 'houzez' );
 			}
 
-			$count_label = 1 == $item_count ? $this->local['view_label'] : $this->count_label;
+			$count_label = 1 == $item_count ? 'visita' : $this->count_label;
 
 			$output .= '
 			<li class="stats-data-' . $i . '">
@@ -203,7 +202,7 @@ $BCD__Home = new class() extends BCD__Template {
 			$num = '3';
 		}
 		if ( $total_other_data == 1 ) {
-			$this->count_label = $this->local['view_label'];
+			$this->count_label = 'visita';
 		}
 
 		$output .= '

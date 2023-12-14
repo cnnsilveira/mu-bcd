@@ -79,6 +79,7 @@ class BCD__Reset {
 					}
 				}
 				
+				wp_dequeue_style( 'wp-custom-css' );
 				wp_dequeue_style( 'dashicons' );
 				wp_dequeue_style( 'admin-bar' );
 				wp_dequeue_style( 'redux-google-fonts-houzez_options' );
@@ -117,6 +118,7 @@ class BCD__Reset {
 		remove_action( 'wp_head', 'feed_links', 2 );
 		remove_action( 'wp_head', 'feed_links_extra', 3 );
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+		remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
 	}
 
 	private function bcd__enqueues() {

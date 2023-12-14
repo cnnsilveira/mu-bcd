@@ -1,16 +1,17 @@
 .bcd__header {
-    width: calc(100dvw - 70px) !important;
+    width: 100dvw;
     height: 70px;
     position: fixed;
     top: 0;
     right: 0;
     background: #1e1e1e;
-    padding: 0 30px;
+    padding: 0 30px 0 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 0 5px #00000088;
     border-bottom-right-radius: 20px;
+	z-index: 1;
 
 	&--left {
 		height: 100%;

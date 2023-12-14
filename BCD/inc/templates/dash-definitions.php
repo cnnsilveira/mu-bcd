@@ -216,10 +216,10 @@ $BCD__Definitions = new class() extends BCD__Template {
 		}
 		
 		$this->bcd__block( $this->bcd__term_table(), 'table-block' );
-		$this->bcd__block( bi_new_term_form( $this->new_term_args ) );
+		// $this->bcd__block( bi_new_term_form( $this->new_term_args ) );
 
 		if ( null !== $this->new_subitem_args ) {
-			$this->bcd__block( bi_new_term_form( $this->new_subitem_args ) );
+			// $this->bcd__block( bi_new_term_form( $this->new_subitem_args ) );
 		}
 	}
 

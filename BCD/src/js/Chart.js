@@ -5,6 +5,12 @@ class BCD_Chart {
 
 	events() {
 		jQuery(function($) {
+			$('.bcd__chart--tabs .nav-item a').click((e) => {
+				e.preventDefault();
+
+				$(e.target).closest('.nav-pills').find('a.nav-link').removeClass('active');
+				$(e.target).addClass('active');
+			})
 			/* ------------------------------------------------------------------------ */
 			/*  Top Browsers
 			/* ------------------------------------------------------------------------ */

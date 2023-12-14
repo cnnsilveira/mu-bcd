@@ -31,7 +31,7 @@ $BCD__Favorite = new class() extends BCD__Template {
 
 		$empty = empty( $fav_ids ) ? ' empty' : false;
 
-		$content = '<div class="bcd__content--props-table' . $empty . '">';
+		$content = '<div class="bcd__content--table' . $empty . '">';
 
 		if ( ! $empty ) {
 			$query_args  = array(
@@ -46,7 +46,7 @@ $BCD__Favorite = new class() extends BCD__Template {
 
 			if ( $props_query->have_posts() ) {
 				$content .= '
-                    <table class="bcd__props_table">
+                    <table class="bcd__table props">
                     <thead>
                         <tr>
                             <th>Imóvel</th>
@@ -54,7 +54,7 @@ $BCD__Favorite = new class() extends BCD__Template {
                             <th>Valor</th>
                             <th>Situação</th>
                             <th>Comparação</th>
-                            <th class="bcd__props_table--actions"></th>
+                            <th class="bcd__table--actions"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,7 +73,7 @@ $BCD__Favorite = new class() extends BCD__Template {
 
 					$content .= '
                         <tr class="content-row" data-bcd__prop_id="' . esc_attr( $prop_id ) . '">
-                        <td class="bcd__props_table--item name">
+                        <td class="bcd__table--item name">
                             <img src="' . esc_url( $prop_thumb ) . '" height="50" width="50">
                             <div class="item-name">
                                 <a href="' . get_post_permalink( $prop_id ) . '"><strong>' . esc_html( $prop_title ) . '</strong></a>
@@ -81,19 +81,19 @@ $BCD__Favorite = new class() extends BCD__Template {
                                 <span>Ref.: ' . esc_html( $prop_ref ) . '</span>
                             </div>
                         </td>
-                        <td class="bcd__props_table--item type">
+                        <td class="bcd__table--item type">
                             <span>' . esc_html( $prop_type ) . '</span>
                         </td>
-                        <td class="bcd__props_table--item price">
+                        <td class="bcd__table--item price">
                             <span>' . esc_html( bcd__brl_value( $prop_price ) ) . '</span>
                         </td>
-                        <td class="bcd__props_table--item situation">
+                        <td class="bcd__table--item situation">
                             <span>' . esc_html( $prop_situ ) . '</span>
                         </td>
-                        <td class="bcd__props_table--item compare">
+                        <td class="bcd__table--item compare">
                             <i class="fa-solid fa-circle-plus"></i>
                         </td>
-                        <td class="bcd__props_table--item actions">
+                        <td class="bcd__table--item actions">
                             <span title="Remover"><i class="fa-solid fa-trash"></i></span>
                         </td>
                     </tr>
