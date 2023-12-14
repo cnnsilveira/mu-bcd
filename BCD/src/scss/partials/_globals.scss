@@ -54,6 +54,14 @@ a {
     text-decoration: none;
 }
 
+input[type="text"],
+input[type="number"],
+input[type="submit"],
+textarea,
+button {
+	all: unset;
+}
+
 .bcd__content {
     margin: 75px 10px 5px 70px !important;
     padding: 10px 20px;
@@ -109,6 +117,7 @@ a {
         width: 100%;
         box-shadow: 0 0 10px #00000020;
         flex-grow: 1;
+		overflow: hidden;
 
         &.small {
             width: calc(33% - 10px);

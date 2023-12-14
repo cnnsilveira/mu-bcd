@@ -29,7 +29,7 @@ $BCD__Props = new class() extends BCD__Template {
 			'on_hold'     => 'Privado',
 			'houzez_sold' => 'Vendido',
 		);
-		return '<span class="bcd__props_table--status-tag ' . $status . '">' . $labels[ $status ] . '</span>';
+		return '<span class="bcd__table--status-tag ' . $status . '">' . $labels[ $status ] . '</span>';
 	}
 
 	private function bcd__prop_table() {
@@ -44,11 +44,11 @@ $BCD__Props = new class() extends BCD__Template {
 
 		$pagination = '';
 
-		$content = '<div class="bcd__content--props-table">';
+		$content = '<div class="bcd__content--table">';
 		$empty = '';
 		if ( $props_query->have_posts() ) {
 			$content .= '
-                <table class="bcd__props_table">
+                <table class="bcd__table props">
                 <thead>
                     <tr>
                         <th>Imóvel</th>
@@ -57,7 +57,7 @@ $BCD__Props = new class() extends BCD__Template {
                         <th>Situação</th>
                         <th>Destaque</th>
                         <th>Status</th>
-                        <th class="bcd__props_table--actions"></th>
+                        <th class="bcd__table--actions"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,7 +79,7 @@ $BCD__Props = new class() extends BCD__Template {
 
 				$content .= '
                     <tr class="content-row" data-bcd__prop_id="' . esc_attr( $prop_id ) . '">
-                    <td class="bcd__props_table--item name">
+                    <td class="bcd__table--item name">
                         <img src="' . esc_url( $prop_thumb ) . '" height="50" width="50">
                         <div class="item-name">
                             <a href="' . bcd__urls( 'edit_prop' ) . '?imovel=' . $prop_id . '"><strong>' . esc_html( $prop_title ) . '</strong></a>
@@ -87,22 +87,22 @@ $BCD__Props = new class() extends BCD__Template {
                             <span>Ref.: ' . esc_html( $prop_ref ) . '</span>
                         </div>
                     </td>
-                    <td class="bcd__props_table--item type">
+                    <td class="bcd__table--item type">
                         <span>' . esc_html( $prop_type ) . '</span>
                     </td>
-                    <td class="bcd__props_table--item price">
+                    <td class="bcd__table--item price">
                         <span>' . esc_html( bcd__brl_value( $prop_price ) ) . '</span>
                     </td>
-                    <td class="bcd__props_table--item situation">
+                    <td class="bcd__table--item situation">
                         <span>' . esc_html( $prop_situ ) . '</span>
                     </td>
-                    <td class="bcd__props_table--item featured ' . esc_attr( $prop_featured ) . '">
+                    <td class="bcd__table--item featured ' . esc_attr( $prop_featured ) . '">
                         ' . wp_kses_post( $featured_icon ) . '
                     </td>
-                    <td class="bcd__props_table--item status">
+                    <td class="bcd__table--item status">
                         ' . wp_kses_post( $this->bcd__status_label( $prop_status ) ) . '
                     </td>
-                    <td class="bcd__props_table--item actions">
+                    <td class="bcd__table--item actions">
                         <button class="menu" onclick="this.classList.toggle(\'opened\')" aria-label="Main Menu">
                             <svg width="35" height="35" viewBox="0 0 100 100">
                                 <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />

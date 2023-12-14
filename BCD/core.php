@@ -13,8 +13,12 @@ if ( ! class_exists( 'BCD_Platform' ) ) {
 
 		public function __construct() {
 			self::constants();
-			self::actions();
 			self::files();
+			self::actions();
+
+			if ( isset( $_POST['bcd__action'] ) ) {
+				new BCD__Handler();
+			}
 		}
 
 		public static function init() {
@@ -65,20 +69,21 @@ if ( ! class_exists( 'BCD_Platform' ) ) {
 			define( 'BCD__DEFINITIONS_SLUG', 'definicoes' );
 		}
 
-		public function actions() {
-			add_action( 'init', array( __CLASS__, 'bcd__rewrite_rules' ) );
-			add_action( 'query_vars', array( __CLASS__, 'bcd__query_vars' ) );
-			add_action( 'template_include', array( __CLASS__, 'bcd__template' ) );
-			add_action( 'after_setup_theme', array( __CLASS__, 'bcd__image_size' ) );
-		}
-
 		public function files() {
 			$request_parts = explode( '/', BCD__REQUEST_URI );
 			if ( 2 <= count( $request_parts ) && BCD__HOME_SLUG === $request_parts[1] ) {
 				require_once BCD__FUNCTIONS . '/helper.inc.php';
 				require_once BCD__CLASSES . '/Reset.class.php';
 				require_once BCD__CLASSES . '/Template.class.php';
+				require_once BCD__CLASSES . '/Handler.class.php';
 			}
+		}
+
+		public function actions() {
+			add_action( 'init', array( __CLASS__, 'bcd__rewrite_rules' ) );
+			add_action( 'query_vars', array( __CLASS__, 'bcd__query_vars' ) );
+			add_action( 'template_include', array( __CLASS__, 'bcd__template' ) );
+			add_action( 'after_setup_theme', array( __CLASS__, 'bcd__image_size' ) );
 		}
 
 		public static function bcd__image_size() {

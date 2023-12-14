@@ -23,7 +23,7 @@ $BCD__Definitions = new class() extends BCD__Template {
 		$this->bcd__set_table_info();
 
 		$this->bcd__start( $this->page_name );
-		$this->bcd__term_table();
+		$this->bcd__table_output();
 		$this->bcd__end();
 	}
 
@@ -64,7 +64,7 @@ $BCD__Definitions = new class() extends BCD__Template {
 				// 'Select' input options for district form.
 				$select_options = array();
 				$i              = 0;
-				foreach ( bi_get_terms( 'property_city' ) as $term ) {
+				foreach ( $this->bcd__get_terms( 'property_city' ) as $term ) {
 					$select_options[ $i ]['value']   = $term->slug;
 					$select_options[ $i ]['content'] = $term->name;
 					++$i;
@@ -98,7 +98,7 @@ $BCD__Definitions = new class() extends BCD__Template {
 					'block_title'     => 'Tipos de imóvel',
 					'taxonomy'        => 'property_type',
 					'data_reference'  => 'type',
-					'columns_title'   => array( 'Tipos', '', 'Imóveis' ),
+					'columns_title'   => array( 'Tipos de imóvel', '', 'Imóveis' ),
 					'columns_content' => array( 'bi_term_name', 'bi_term_actions', 'bi_term_count' ),
 					'has_actions'     => true,
 					'is_link'         => true,
@@ -200,17 +200,181 @@ $BCD__Definitions = new class() extends BCD__Template {
 		}
 	}
 
-	private function bcd__term_table() {
+	private function bcd__table_output() {
 		if ( null === $this->terms_table_args || null === $this->new_term_args ) {
 			return;
 		}
 		
-		$this->bcd__block( bi_terms_table( $this->terms_table_args ) );
+		$this->bcd__block( $this->bcd__term_table(), 'table-block' );
 		$this->bcd__block( bi_new_term_form( $this->new_term_args ) );
 
 		if ( null !== $this->new_subitem_args ) {
 			$this->bcd__block( bi_new_term_form( $this->new_subitem_args ) );
 		}
+	}
+
+	private function bcd__term_table() {
+		$markup = '
+		<div class="bcd__content--table">
+			<table class="bcd__table terms">
+				<thead>
+					<tr>
+						<th>' . esc_html( $this->terms_table_args['columns_title'][0] ) . '</th>
+						<th>Imóveis</th>
+		';
+
+		$markup .= isset( $this->terms_table_args['nested_table'] ) ? '<th></th>' : '';
+
+		$markup .= '
+					</tr>
+				</thead>
+				<tbody>
+		';
+
+		$terms_args = array(
+			'taxonomy'   => $this->terms_table_args['taxonomy'],
+			'hide_empty' => false,
+		);
+		foreach ( get_terms( $terms_args ) as $term ) {
+
+			$markup .= '
+				<tr class="content-row" data-bcd__term_self="' . esc_attr( $term->slug ) . '">
+					<td class="bcd__table--item name">
+						<div class="item-name">
+							<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">
+								<span>' . esc_html( $term->name ) . '</span>
+							</a>
+						</div><!-- .item-name -->
+						<div class="update-item">
+							<form class="update-item--form" method="post">
+								<input type="hidden" name="bcd__action" value="update">
+								<input type="hidden" name="action_scope" value="term">
+								<input type="hidden" name="taxonomy" value="' . esc_attr( $this->terms_table_args['taxonomy'] ) . '">
+								<input type="hidden" name="term_id" value="' . esc_attr( $term->term_id ) . '">
+								<input type="text" name="new_name" value="' . esc_attr( $term->name ) . '">
+								<button type="submit">Atualizar</button>
+							</form>
+							<div class="update-item--cancel">
+								<i class="fa-regular fa-circle-xmark"></i>
+								<span class="update-item--cancel--tip">Cancelar edição</span>
+							</div>
+						</div><!-- .update-item -->
+						<div class="item-actions">
+							<i class="edit fa-solid fa-pen-clip"></i>
+							<i class="delete fa-solid fa-trash"></i>
+						</div><!-- .item-actions -->
+					</td><!-- .name -->
+					<td class="bcd__table--item prop-count">
+						<span>' . esc_html( $term->count ) . '</span>
+					</td><!-- .prop-count -->
+			';
+
+			if ( isset( $this->terms_table_args['nested_table'] ) ) {
+				$markup .= '
+					<td class="bcd__table--item toggle-nested">
+						<div class="toggle-nested--btn">
+							<svg><polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/><polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/><polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/></svg>
+						</div>
+					</td><!-- .toggle-nested -->
+				';
+			}
+
+			$markup .=	'
+				</tr><!-- .content-row -->
+			';
+
+			if ( isset( $this->terms_table_args['nested_table'] ) ) {
+				$markup .= '
+					<tr class="content-row nested" data-bcd__term_parent="' . $term->slug . '">
+						<td>
+							<table class="bcd__table terms">
+								<tbody>';
+
+				$terms_args['taxonomy'] = $this->terms_table_args['nested_table']['taxonomy'];
+
+				$has_children = false;
+				foreach ( get_terms( $terms_args ) as $child_term ) {
+
+					$is_child = false;
+					$nested_term_location = get_option( "_houzez_property_area_$child_term->term_taxonomy_id" );
+					if ( isset( $nested_term_location['parent_city'] ) && $nested_term_location['parent_city'] == $term->slug ) {
+						if ( ! $has_children ) {
+							$has_children = true;
+						}
+						$is_child = true;
+					}
+
+					if ( $is_child ) {
+						$markup .= '
+							<tr class="content-row" data-bcd__term_self="' . $child_term->slug . '">
+								<td class="bcd__table--item name">
+									<div class="item-name">
+										<a href="' . get_term_link( $child_term->term_id ) . '">
+											<span>' . $child_term->name . '</span>
+										</a>
+									</div><!-- .item-name -->
+									<div class="update-item">
+										<form class="update-item--form" method="get">
+											<input type="text" value="' . $child_term->name . '">
+											<button type="submit">Atualizar</button>
+										</form>
+									</div><!-- .update-item -->
+								</td><!-- .name -->
+								<td class="bcd__table--item actions">
+									<div class="actions-wrap">
+										<a href="' . get_term_link( $child_term->term_id ) . '">
+									</div><!-- .actions-wrap -->
+								</td><!-- .actions -->
+								<td class="bcd__table--item prop-count">
+									' . $term->count . '
+								</td><!-- .prop-count -->
+								<td></td>
+							</tr><!-- .content-row -->
+						';
+					}
+				}
+
+				if ( false === $has_children ) {
+					$markup .= '<tr><td colspan="3">Nenhum bairro cadastrado para essa cidade</td></tr>';
+				}
+
+				$markup .= '
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				';
+			}
+		}
+		
+		$markup .= '
+				</tbody>
+			</table><!-- .bcd__table -->
+		</div><!-- .bcd__content--table -->
+		';
+
+		if ( isset( $_POST['bcd__action'] ) ) {
+			var_dump( $_POST );
+			var_dump( $_SERVER['HTTP_REFERER'] );
+		}
+		
+		return $markup;
+	}
+
+	private function bcd__new_term() {
+
+	}
+
+	private function bcd__get_terms( string $taxonomy, array $args = null ) {
+		if ( null !== $args ) {
+			$terms_args = $args;
+		} else {
+			$terms_args = array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => false,
+			);
+		}
+		return get_terms( $terms_args );
 	}
 
 	private function bcd__default_page() {
@@ -234,56 +398,5 @@ $BCD__Definitions = new class() extends BCD__Template {
 	private function bcd__set_page_name() {
 		$value = '?mod=' . $_GET['mod'];
 		$this->page_name = array_search( $value, $this->header_nav, true );
-	}
-
-	private function bcd__pages_info( string $option = null ) {
-		$options = array(
-			'cidades-e-bairros' => array(
-				'template' => 'cities.php',
-				'taxonomy' => array( 'property_city', 'property_area' ),
-				'name'     => 'Cidades e bairros',
-			),
-			'tipos'             => array(
-				'template' => 'types.php',
-				'taxonomy' => array( 'property_type' ),
-				'name'     => 'Tipos de imóvel',
-			),
-			'caracteristicas'   => array(
-				'template' => 'features.php',
-				'taxonomy' => array( 'property_feature' ),
-				'name'     => 'Características',
-			),
-			'etiquetas'         => array(
-				'template' => 'labels.php',
-				'taxonomy' => array( 'property_label' ),
-				'name'     => 'Etiquetas',
-			),
-			'situacoes'         => array(
-				'template' => 'status.php',
-				'taxonomy' => array( 'property_status' ),
-				'name'     => 'Situações',
-			),
-		);
-		if ( null !== $option ) {
-			return array_key_exists( $option, $options ) ? $options[ $option ] : false;
-		}
-		return $options;
-	}
-	
-	/**
-	 * Outputs the template according to the request.
-	 *
-	 * @package bi_custom_code
-	 * @since 1.0.0
-	 * @source /houzez/bi-custom/inc/cities-options/bi-cities-options.php
-	 */
-	private function bcd__table_info() {
-		$pages_info = isset( $_GET['mod'] ) ? bi_prop_options_info( $_GET['mod'] ) : false;
-		if ( $pages_info ) {
-			echo bi_content_start( 'Definições do imóvel', array( 'type' => 'menu' ) );
-			require_once BIC_DIR . '/inc/cities-options/templates/' . $pages_info['template'];
-			echo bi_content_end();
-			return;
-		}
 	}
 };

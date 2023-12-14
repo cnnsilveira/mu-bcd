@@ -5,7 +5,7 @@
         padding: 20px;
     }
 
-    .bcd__props_table {
+    .bcd__table {
         width: 100%;
 
         tr {
@@ -27,7 +27,7 @@
                     }
                 }
 
-                &:not(:first-child):not(.bcd__props_table--actions) {
+                &:not(:first-child):not(.bcd__table--actions) {
                     width: 10%;
 
                     @include desktop_large {
@@ -41,7 +41,7 @@
                 border-top: 1px solid #e0e0e0;
             }
 
-            th:not(:first-child):not(.bcd__props_table--actions),
+            th:not(:first-child):not(.bcd__table--actions),
             td:not(:first-child):not(.actions) {
                 @include tablet {
                     display: none;
@@ -244,5 +244,176 @@
                 background: #2663a1;
             }
         }
+
+		&.terms {
+			thead {
+				th:first-child {
+					width: 100%;
+				}
+			}
+			tbody {
+				tr {
+					td {
+						padding-top: 15px;
+						padding-bottom: 15px;
+
+						&.name {
+							align-items: center;
+							gap: 20px;
+
+							.item-name {
+								line-height: 44px;
+							}
+
+							.update-item {
+								display: flex;
+								margin-left: -10px;
+								align-items: center;
+								justify-content: center;
+								gap: 10px;
+								position: absolute;
+								background: #f6f8ff;
+								opacity: 0;
+								visibility: hidden;
+								transition: all .4s;
+
+								&.active {
+									opacity: 1;
+									visibility: visible;
+
+									&~* {
+										opacity: 0;
+										visibility: hidden;
+									}
+
+									.update-item--cancel {
+										&--tip {
+											color: #fff;
+											background: #1e1e1e;
+											position: absolute;
+											top: -3px;
+											bottom: 0;
+											margin: auto;
+											left: 0;
+											margin-left: 35px;
+											width: fit-content;
+											height: fit-content;
+											white-space: nowrap;
+											font-size: 14px;
+											padding: 5px 8px;
+											border-radius: 10px;
+											transition: all .2s;
+											opacity: 0;
+											visibility: hidden;
+									
+											&::before {		
+												content: '';
+												width: 0; 
+												height: 0; 
+												border-top: 10px solid transparent;
+												border-bottom: 10px solid transparent;
+												border-right: 10px solid #1e1e1e;
+												position: absolute;
+												left: -8px;
+												top: 0;
+												bottom: 0;
+												margin: auto;
+											}
+										}
+
+										&:hover {
+											span {
+												opacity: 1;
+												visibility: visible;
+											}
+
+											i {
+												opacity: 1;
+												color: #5182ff;
+											}
+										}
+									}
+								}
+
+								&--form {
+									border: 1px solid #e0e0e0;
+									border-radius: 15px;
+									display: flex;
+									align-items: center;
+									gap: 10px;
+									transition: all .2s;
+									overflow: hidden;
+
+									&:has(input:focus) {
+										border-color: #5182ff;
+
+										button {
+											background: #5182ff;
+											color: #fff;
+											opacity: 1;
+											visibility: visible;
+										}
+									}
+
+									input[type="text"] {
+										padding: 0 10px;
+										min-width: 250px;
+									}
+
+									button {
+										opacity: 0;
+										visibility: hidden;
+										padding: 10px;
+										cursor: pointer;
+										transition: all .2s;
+									}
+								}
+
+								&--cancel {
+									position: relative;
+
+									i {
+										font-size: 20px;
+										cursor: pointer;
+										color: #1e1e1e;
+										opacity: 0.4;
+										transition: all .2s;
+									}
+
+									&--tip {
+										position: absolute;
+										opacity: 0;
+										visibility: hidden;
+									}
+								}
+							}
+
+							.item-actions {
+								display: flex;
+								gap: 10px;
+								transition: all .2s;
+
+								i {
+									font-size: 16px;
+									cursor: pointer;
+									color: #1e1e1e;
+									opacity: 0.4;
+									transition: all .2s;
+
+									&:hover {
+										opacity: 1;
+										color: #5182ff;
+									}
+								}
+							}
+						}
+
+						&.prop-count {
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
     }
 }
